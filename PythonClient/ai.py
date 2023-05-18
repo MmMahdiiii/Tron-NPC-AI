@@ -31,13 +31,40 @@ class AI(RealtimeAI):
         super(AI, self).__init__(world)
 
 
-    def initialize(self):
-        print('initialize')
+    def initialize(self, brain: MagicalBrain):
+        self.brain = brain
 
 
     def decide(self):
-        print('decide')
-
-        self.send_command(ChangeDirection(random.choice(list(EDirection))))
+        #bounded depth MinMax Tree Search
+        #calculating heuristics by using the our MagicalBrain
+        #choosing the best move
+        
+        self.send_command()
         if self.world.agents[self.my_side].wall_breaker_cooldown == 0:
             self.send_command(ActivateWallBreaker())
+                 
+    def world_as_tensor(self):
+        pass
+
+
+class Genome:
+    def __init__(self, AI):
+        self.brain = AI.brain
+        pass
+    
+    def genome(self):
+        # make a genome from the brain
+        pass 
+    
+    def mutate(self):
+        # mutate the genome
+        pass
+    
+    def crossover(self, other_genome):
+        # crossover with other genome
+        pass
+    
+    def get_brain(self):
+        # return the brain
+        pass
