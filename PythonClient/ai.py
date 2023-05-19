@@ -12,17 +12,30 @@ from chillin_client import RealtimeAI
 from ks.models import ECell, EDirection, Position
 from ks.commands import ChangeDirection, ActivateWallBreaker
 
+#pytorch imports
+import torch
+from torch import nn
 
-class MagicalBrain(nn.Module):
-    
-    def __init__(self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-        self.layer1 
-        
-        
-        
-    def forward(self):
-        pass 
+class Soul(nn.Module):
+    def __init__(self, input_size, hidden_layers):
+        super(Soul, self).__init__()
+        self.input_size = input_size
+        self.hidden_layers = hidden_layers
+        self.layers = []
+        prev_layer_size = input_size
+        for i, layer_size in enumerate(hidden_layers):
+            layer = nn.Linear(prev_layer_size, layer_size)
+            self.add_module(f"hidden_layer_{i}", layer)
+            self.layers.append(layer)
+            prev_layer_size = layer_size
+
+        self.output_layer = nn.Linear(prev_layer_size, 1)
+
+    def forward(self, x):
+        for layer in self.layers:
+            x = torch.relu(layer(x))
+        x = self.output_layer(x)
+        return x
 
 
 class AI(RealtimeAI):
@@ -31,8 +44,8 @@ class AI(RealtimeAI):
         super(AI, self).__init__(world)
 
 
-    def initialize(self, brain: MagicalBrain):
-        self.brain = brain
+    def initialize(self):
+        pass
 
 
     def decide(self):
@@ -44,27 +57,3 @@ class AI(RealtimeAI):
         if self.world.agents[self.my_side].wall_breaker_cooldown == 0:
             self.send_command(ActivateWallBreaker())
                  
-    def world_as_tensor(self):
-        pass
-
-
-class Genome:
-    def __init__(self, AI):
-        self.brain = AI.brain
-        pass
-    
-    def genome(self):
-        # make a genome from the brain
-        pass 
-    
-    def mutate(self):
-        # mutate the genome
-        pass
-    
-    def crossover(self, other_genome):
-        # crossover with other genome
-        pass
-    
-    def get_brain(self):
-        # return the brain
-        pass
