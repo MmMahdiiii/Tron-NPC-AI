@@ -8,17 +8,29 @@ class FightClub:
     def __init__(self):
         self.demons = []
         
+    # demons fight every day
+    def fight(self):
+        pass 
     
+    # demons sex every night
+    def night(self):
+        pass
+        
+# you dont know How hartless they are
+# They don't have any feelings
+# They are born to fight
 class Demon(AI):
     def __init__(self, soul = None) -> None:
         super().__init__()
         self.parmeters = {'hidden_layers': [], 'input_size': 0}
         self.soul = Soul(**self.parmeters) if soul is None else soul
     
+    # they make twin as soon as they sex =)
     @staticmethod
-    def sex(demon1, demon2):
-        soul1 = demon1.soul
-        soul2 = demon2.soul
+    def sex(mother, father):
+        soul1 = mother.soul
+        soul2 = father.soul
+        
         rands = []
         rand_comps = []
         new_wights1 = []
@@ -36,12 +48,12 @@ class Demon(AI):
             new_wights1[i] += rand_comps[i] * param
             new_wights2[i] += rand[i] * param
 
-        new_soul1 = Soul(hidden_layers=soul1.hidden_layers, input_size=soul1.input_size)
-        new_soul2 = Soul(hidden_layers=soul1.hidden_layers, input_size=soul1.input_size)
+        son_soul = Soul(hidden_layers=soul1.hidden_layers, input_size=soul1.input_size)
+        daughter_soul = Soul(hidden_layers=soul1.hidden_layers, input_size=soul1.input_size)
 
-        for i, param in enumerate(new_soul1.parameters()):
+        for i, param in enumerate(son_soul.parameters()):
             param = nn.parameter.Parameter(new_wights1[i])
-        for i, param in enumerate(new_soul2.parameters()):
+        for i, param in enumerate(daughter_soul.parameters()):
             param = nn.parameter.Parameter(new_wights2[i])
         
-        return (Demon(new_soul1), Demon(new_soul2))
+        return (Demon(son_soul), Demon(daughter_soul))
