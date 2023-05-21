@@ -9,13 +9,18 @@ class FightClub:
         self.demons = []
         
     # demons fight every day
-    def fight(self):
+    def day(self):
         pass 
     
     # demons sex every night
     def night(self):
         pass
         
+    def fight(demon1, demon2):
+        # rand.choice(maps)
+        pass 
+    
+    
 # you dont know How hartless they are
 # They don't have any feelings
 # They are born to fight
@@ -57,3 +62,11 @@ class Demon(AI):
             param = nn.parameter.Parameter(new_wights2[i])
         
         return (Demon(son_soul), Demon(daughter_soul))
+    
+    def get_ready_for_fight(self, world):
+        self.world = world
+    
+    def inspect(self):
+        if self.world is None: 
+            world = self.world  
+        
