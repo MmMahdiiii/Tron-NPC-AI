@@ -73,8 +73,17 @@ class AI(RealtimeAI):
         # as while we call this function, always it is my turn to play
         # so we should call max_val_func
 
-        score, move = self.max_val(depth, world)
-        return move
+        move = None
+        v = float('-inf')
+        for action in self.get_actions(world, player=self.my_side):
+            # deep copy from world
+            new_world = copy.deepcopy(world)
+            new_world = game_result(new_world, action, player=self.my_side)
+            v2 = self.min_val(depth, new_world)
+            if v2 > v:
+                v = v2
+
+        return v, move
 
     def min_val(self, depth, world):
         # if depth == 0:
@@ -83,20 +92,32 @@ class AI(RealtimeAI):
         # deep copy world
         # min finding loop operation
         # modified world
-        # return v,
-        
+        # return v
+
+        if depth == 0:
+            return self.heuristic(world)
+        v = float('inf')
+        depth -= 1
+        for action in self.get_actions(world, player=self.my_side):
+            # deep copy from world
+            new_world = copy.deepcopy(world)
+            new_world = game_result(new_world, action, player=self.my_side)
+            # v2, a2 = self.max_val(depth, new_world)
+            v2 = self.max_val(depth, new_world)
+            if v2 < v:
+                v = v2
 
     def max_val(self, depth, world):
         if depth == 0:
             return self.heuristic(world)
         v = float('-inf')
         depth -= 1
-        for action in self.get_actions(world, player = self.my_side):
+        for action in self.get_actions(world, player=self.my_side):
             # deep copy from world
             new_world = copy.deepcopy(world)
-            new_world = game_result(new_world, action, player = self.my_side)
-            v2, a2 = self.min_val(depth, new_world)
+            new_world = game_result(new_world, action, player=self.my_side)
+            # v2, a2 = self.min_val(depth, new_world)
+            v2 = self.min_val(depth, new_world)
             if v2 > v:
                 v = v2
-                move = a2
-        return v, move
+        return v
