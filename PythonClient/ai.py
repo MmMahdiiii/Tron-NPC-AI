@@ -4,7 +4,6 @@
 import random
 from torch import nn
 
-
 # chillin imports
 from chillin_client import RealtimeAI
 
@@ -12,9 +11,10 @@ from chillin_client import RealtimeAI
 from ks.models import ECell, EDirection, Position
 from ks.commands import ChangeDirection, ActivateWallBreaker
 
-#pytorch imports
+# pytorch imports
 import torch
 from torch import nn
+
 
 class Soul(nn.Module):
     def __init__(self, input_size, hidden_layers):
@@ -43,17 +43,14 @@ class AI(RealtimeAI):
     def __init__(self, world):
         super(AI, self).__init__(world)
 
-
     def initialize(self):
         pass
 
-
     def decide(self):
-        #bounded depth MinMax Tree Search
-        #calculating heuristics by using the our MagicalBrain
-        #choosing the best move
-        
+        # bounded depth MinMax Tree Search
+        # calculating heuristics by using the our MagicalBrain
+        # choosing the best move
+
         self.send_command()
         if self.world.agents[self.my_side].wall_breaker_cooldown == 0:
             self.send_command(ActivateWallBreaker())
-                 
