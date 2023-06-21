@@ -3,6 +3,7 @@
 # python imports
 import random
 from torch import nn
+import copy
 
 # chillin imports
 from chillin_client import RealtimeAI
@@ -38,6 +39,10 @@ class Soul(nn.Module):
         return x
 
 
+def game_result(new_world, action):
+    pass
+
+
 class AI(RealtimeAI):
 
     def __init__(self, world):
@@ -46,7 +51,14 @@ class AI(RealtimeAI):
     def initialize(self):
         pass
 
+    def get_actions(self, world, player):
+        actions = []
+        for direction in EDirection:
+            actions.append(ChangeDirection(direction))
+        return actions
+
     def decide(self):
+
         # bounded depth MinMax Tree Search
         # calculating heuristics by using the our MagicalBrain
         # choosing the best move
@@ -54,3 +66,37 @@ class AI(RealtimeAI):
         self.send_command()
         if self.world.agents[self.my_side].wall_breaker_cooldown == 0:
             self.send_command(ActivateWallBreaker())
+
+    # min max tree func
+    def min_max_tree(self, depth, world):
+
+        # as while we call this function, always it is my turn to play
+        # so we should call max_val_func
+
+        score, move = self.max_val(depth, world)
+        return move
+
+    def min_val(self, depth, world):
+        # if depth == 0:
+        #     return self.heuristic(world)
+        # v = float('inf')
+        # deep copy world
+        # min finding loop operation
+        # modified world
+        # return v,
+        
+
+    def max_val(self, depth, world):
+        if depth == 0:
+            return self.heuristic(world)
+        v = float('-inf')
+        depth -= 1
+        for action in self.get_actions(world, player = self.my_side):
+            # deep copy from world
+            new_world = copy.deepcopy(world)
+            new_world = game_result(new_world, action, player = self.my_side)
+            v2, a2 = self.min_val(depth, new_world)
+            if v2 > v:
+                v = v2
+                move = a2
+        return v, move
