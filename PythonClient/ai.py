@@ -61,7 +61,6 @@ class AI(RealtimeAI):
         actions = []
         my_agent = world.agents[player]
 
-
     def decide(self):
 
         # bounded depth MinMax Tree Search
