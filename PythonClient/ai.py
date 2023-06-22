@@ -52,10 +52,15 @@ class AI(RealtimeAI):
         pass
 
     def get_actions(self, world, player):
+        # checking if from three directions, there is a wall or not
+        # if there is no wall, we can go to that direction
+        # if there is a wall, we check if we have wall breaker available
+        # if we have, we can break the wall and go to that direction
+        # if we don't have, we can't go to that direction
+
         actions = []
-        for direction in EDirection:
-            actions.append(ChangeDirection(direction))
-        return actions
+        my_agent = world.agents[player]
+
 
     def decide(self):
 
