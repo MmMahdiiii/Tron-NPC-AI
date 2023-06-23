@@ -23,11 +23,10 @@ class AI(RealtimeAI):
         self.nn = None
 
     def initialize(self):
-        # with open("nn_neat", "rb") as f:
-        #     self.nn = pickle.load(f)
-        # if self.nn is None:
-        #     raise Exception("nn is None")
-        pass
+        with open("nn_neat", "rb") as f:
+            self.nn = pickle.load(f)
+        if self.nn is None:
+            raise Exception("nn is None")
 
     def heuristic(self, world):
         # calculating distances of the agent in 8 directions to the nearest wall
