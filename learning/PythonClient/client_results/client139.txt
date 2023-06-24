@@ -1,0 +1,12 @@
+Loading config from configs\gamecfg139.json
+Loading neural network from nn\nn_139.pkl
+Starting client
+Connecting to host 'localhost' port 8039
+Connected successfully
+joined the game successfully
+Side: Yellow
+Winner side: draw
+Details:
+  Scores:
+    Blue -> -18
+    Yellow -> -18

@@ -1,0 +1,17 @@
+Loading config from configs\gamecfg103.json
+Loading neural network from nn\nn_103.pkl
+Starting client
+Connecting to host 'localhost' port 8003
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8003
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8003
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8003
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8003
+Failed to connect: timed out

@@ -1,12 +1,17 @@
 Loading config from configs\gamecfg5.json
 Loading neural network from nn\nn_5.pkl
 Starting client
-Connecting to host 'localhost' port 8000
-Connected successfully
-joined the game successfully
-Side: Yellow
-Winner side: Yellow
-Details:
-  Scores:
-    Blue -> -14
-    Yellow -> 7
+Connecting to host 'localhost' port 8005
+Failed to connect: _ssl.c:1112: The handshake operation timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8005
+Failed to connect: attempt to connect already-connected SSLSocket!
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8005
+Failed to connect: attempt to connect already-connected SSLSocket!
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8005
+Failed to connect: attempt to connect already-connected SSLSocket!
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8005
+Failed to connect: attempt to connect already-connected SSLSocket!

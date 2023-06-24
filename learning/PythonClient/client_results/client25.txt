@@ -1,0 +1,12 @@
+Loading config from configs\gamecfg25.json
+Loading neural network from nn\nn_25.pkl
+Starting client
+Connecting to host 'localhost' port 8025
+Connected successfully
+joined the game successfully
+Side: Blue
+Winner side: Blue
+Details:
+  Scores:
+    Blue -> 7
+    Yellow -> -14

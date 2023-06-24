@@ -1,0 +1,17 @@
+Loading config from configs\gamecfg57.json
+Loading neural network from nn\nn_57.pkl
+Starting client
+Connecting to host 'localhost' port 8007
+Failed to connect: _ssl.c:1112: The handshake operation timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8007
+Failed to connect: attempt to connect already-connected SSLSocket!
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8007
+Failed to connect: attempt to connect already-connected SSLSocket!
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8007
+Failed to connect: attempt to connect already-connected SSLSocket!
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8007
+Failed to connect: attempt to connect already-connected SSLSocket!

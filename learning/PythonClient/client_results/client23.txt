@@ -1,0 +1,12 @@
+Loading config from configs\gamecfg23.json
+Loading neural network from nn\nn_23.pkl
+Starting client
+Connecting to host 'localhost' port 8023
+Connected successfully
+joined the game successfully
+Side: Blue
+Winner side: Yellow
+Details:
+  Scores:
+    Blue -> -18
+    Yellow -> 2

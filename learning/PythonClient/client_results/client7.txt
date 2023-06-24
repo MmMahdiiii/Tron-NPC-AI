@@ -1,12 +1,17 @@
 Loading config from configs\gamecfg7.json
 Loading neural network from nn\nn_7.pkl
 Starting client
-Connecting to host 'localhost' port 8002
-Connected successfully
-joined the game successfully
-Side: Yellow
-Winner side: draw
-Details:
-  Scores:
-    Blue -> -16
-    Yellow -> -16
+Connecting to host 'localhost' port 8007
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8007
+Failed to connect: [WinError 10056] A connect request was made on an already connected socket
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8007
+Failed to connect: [WinError 10056] A connect request was made on an already connected socket
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8007
+Failed to connect: [WinError 10056] A connect request was made on an already connected socket
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8007
+Failed to connect: [WinError 10056] A connect request was made on an already connected socket

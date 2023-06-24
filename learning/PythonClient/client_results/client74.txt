@@ -1,0 +1,17 @@
+Loading config from configs\gamecfg74.json
+Loading neural network from nn\nn_74.pkl
+Starting client
+Connecting to host 'localhost' port 8024
+Failed to connect: _ssl.c:1112: The handshake operation timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8024
+Failed to connect: attempt to connect already-connected SSLSocket!
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8024
+Failed to connect: attempt to connect already-connected SSLSocket!
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8024
+Failed to connect: attempt to connect already-connected SSLSocket!
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8024
+Failed to connect: attempt to connect already-connected SSLSocket!

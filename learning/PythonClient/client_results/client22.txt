@@ -1,0 +1,15 @@
+Loading config from configs\gamecfg22.json
+Loading neural network from nn\nn_22.pkl
+Starting client
+Connecting to host 'localhost' port 8022
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8022
+Connected successfully
+joined the game successfully
+Side: Yellow
+Winner side: Blue
+Details:
+  Scores:
+    Blue -> 3
+    Yellow -> -17

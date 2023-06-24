@@ -1,0 +1,12 @@
+Loading config from configs\gamecfg141.json
+Loading neural network from nn\nn_141.pkl
+Starting client
+Connecting to host 'localhost' port 8041
+Connected successfully
+joined the game successfully
+Side: Yellow
+Winner side: Yellow
+Details:
+  Scores:
+    Blue -> -17
+    Yellow -> 3

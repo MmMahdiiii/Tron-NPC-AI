@@ -1,0 +1,12 @@
+Loading config from configs\gamecfg42.json
+Loading neural network from nn\nn_42.pkl
+Starting client
+Connecting to host 'localhost' port 8042
+Connected successfully
+joined the game successfully
+Side: Blue
+Winner side: Blue
+Details:
+  Scores:
+    Blue -> 31
+    Yellow -> 13

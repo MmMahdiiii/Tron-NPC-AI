@@ -13,7 +13,7 @@ import json
 directory = os.getcwd()
 server_directory = directory + '\\PythonServer'
 client_directory = directory + '\\PythonClient'
-num_servers = 5
+num_servers = 50
 
 # TODO : run num_servers servers (pop_size % num_servers == 0)
 # TODO : each neural network would dump to a file
@@ -106,8 +106,11 @@ def run_games(genomes, config):
 
     scores = [0 for i in range(len(genomes))]
     for i, p in enumerate(processes):
+        
         p.wait()
         results[i].close()
+        
+    for i, p in enumerate(processes):
         with open('client_results\\client' + str(i) + '.txt', 'r') as f:
             lines = f.readlines()
             #           Side: Yellow
@@ -151,7 +154,7 @@ def eval_genomes(genomes, config):
     # saving the best fitness for each generation
     best_fitness = 0
     best_genome = None
-    for genome in genomes:
+    for genome_id, genome in genomes:
         if genome.fitness > best_fitness:
             best_fitness = genome.fitness
             best_genome = genome
