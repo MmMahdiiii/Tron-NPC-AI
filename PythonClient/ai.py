@@ -43,8 +43,8 @@ class AI(RealtimeAI):
 
         x, y = world.agents[self.my_side].position.x, world.agents[self.my_side].position.y
 
-        width = len(world.board[0])
-        height = len(world.board)
+        height = len(world.board[0])
+        width = len(world.board)
 
         pos = []
         for i in range(8):
@@ -104,6 +104,8 @@ class AI(RealtimeAI):
             distances[i] = math.sqrt((pos[i][1] - x) ** 2 + (pos[i][0] - y) ** 2)
             if is_enemy_wall(pos[i][0], pos[i][1]):
                 enemies[i] = 1
+
+        print(distances)
 
         information = distances + enemies + [world.agents[self.my_side].wall_breaker_cooldown,
                                              world.agents[self.my_side].wall_breaker_rem_time,

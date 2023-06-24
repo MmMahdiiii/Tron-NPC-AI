@@ -131,23 +131,42 @@ def run_games(genomes, config):
         genome.fitness = scores[i]
 
 
-def eval_genomes(genomes, config):
+best_scores = []
 
+
+def eval_genomes(genomes, config):
     gen = 1
 
     # select a random map
     chosen_map = random.choice(maps)
     # run the servers
+    genome_groups = []
     for slide in range(0, len(genomes), 2 * num_servers):
+        genome_groups.append(genomes[slide: slide + 2 * num_servers])
+    for genome_group in genome_groups:
         server_processes = run_server(chosen_map)
-        # run the clients
-        print('generation: ', gen, ' starting games for genomes: ', slide, slide + 2 * num_servers - 1)
-        run_games(genomes[slide:slide + 2 * num_servers], config)
+        run_games(genome_group, config)
 
-        # break if score gets large enough
-        '''if score > 20:
-            pickle.dump(nets[0],open("best.pickle", "wb"))
-            break'''
+    # saving the best genome for each 2 generations
+    # saving the best fitness for each generation
+    best_fitness = 0
+    best_genome = None
+    for genome in genomes:
+        if genome.fitness > best_fitness:
+            best_fitness = genome.fitness
+            best_genome = genome
+        best_scores.append(best_fitness)
+        if gen % 2 == 0:
+            file_name = 'best_genome_' + str(gen) + '.pkl'
+            file_path = 'nn\\' + file_name
+            with open(file_path, 'wb') as output:
+                pickle.dump(best_genome, output, 1)
+    # storing scores
+    if gen % 1 == 0:
+        with open('best_scores.txt', 'w') as f:
+            for score in best_scores:
+                f.write(str(score) + '\n')
+    gen += 1
 
 
 def run(config_file):
@@ -183,5 +202,4 @@ if __name__ == '__main__':
     local_dir = os.path.dirname(__file__)
     config_path = os.path.join(local_dir, 'config-feedforward.txt')
     init_maps()
-
     run(config_path)
