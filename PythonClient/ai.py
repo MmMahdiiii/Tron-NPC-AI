@@ -202,10 +202,6 @@ class AI(RealtimeAI):
         return False
 
     def initialize(self):
-        # with open("nn_neat", "rb") as f:
-        #     self.nn = pickle.load(f)
-        # if self.nn is None:
-        #     raise Exception("nn is None")
         pass
 
     def heuristic(self, world):
@@ -290,7 +286,7 @@ class AI(RealtimeAI):
         onehot_direction = [0] * 4
         onehot_direction[world.agents[self.my_side].direction.value] = 1
         information += onehot_direction
-        return information
+        return self.nn.activate(information)
 
     def decide(self):
         # self.i += 1
@@ -302,33 +298,32 @@ class AI(RealtimeAI):
         best_move = None
         best_score = float('-inf')
         actions = self.get_actions(self.world, player=self.world.agents[self.my_side])
-        if self.i >= 30:
-            print("actions in i : " + str(self.i) + " are: " + actions.__str__())
-        for action in actions:
+        scores = [0] * len(actions)
+        for i, action in enumerate(actions):
             next_direction = action.split("_")[0]
             # activate_state = action.split("_")[1:]
             new_world = copy.deepcopy(self.world)
             new_world = self.game_result(new_world, next_direction, is_us=True)
-            # new_score = self.min_val(depth, new_world)
-            new_score = new_world.scores[self.my_side]
-            if new_score > best_score:
-                best_score = new_score
-                best_move = action
-                self.world = new_world
+            scores[i] = self.heuristic(new_world)
 
-        split_move = best_move.split("_")[0]
-        if split_move == "up":
-            self.send_command(ChangeDirection(EDirection.Up))
-        elif split_move == "down":
-            self.send_command(ChangeDirection(EDirection.Down))
-        elif split_move == "left":
-            self.send_command(ChangeDirection(EDirection.Left))
-        elif split_move == "right":
+        best_move = int(scores.index(max(scores)))
+        move = actions[best_move].split("_")
+
+        if move[1] == "on":
+            self.send_command(ActivateWallBreaker())
+
+        if move[0] == "right":
             self.send_command(ChangeDirection(EDirection.Right))
+        elif move[0] == "left":
+            self.send_command(ChangeDirection(EDirection.Left))
+        elif move[0] == "up":
+            self.send_command(ChangeDirection(EDirection.Up))
+        elif move[0] == "down":
+            self.send_command(ChangeDirection(EDirection.Down))
 
-        print("our score : " + str(self.world.scores[self.my_side]))
-        print("enemy score : " + str(self.world.scores[self.other_side]))
-    # min max tree func
+
+
+    # min max tree functions
     def min_max_tree(self, depth, world):
 
         best_move = None
@@ -390,10 +385,3 @@ class AI(RealtimeAI):
         # TODO
 
 
-
-
-        # ##### Mahdi
-        # print(self.heuristic(self.world))
-        # self.send_command(ChangeDirection(random.choice(list(EDirection))))
-        # if self.world.agents[self.my_side].wall_breaker_cooldown == 0:
-        #     self.send_command(ActivateWallBreaker())
