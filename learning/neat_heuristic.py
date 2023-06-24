@@ -144,6 +144,7 @@ def eval_genomes(genomes, config):
     chosen_map = random.choice(maps)
     # run the servers
     genome_groups = []
+    server_processes = []
     for slide in range(0, len(genomes), 2 * num_servers):
         genome_groups.append(genomes[slide: slide + 2 * num_servers])
     for genome_group in genome_groups:
@@ -169,6 +170,11 @@ def eval_genomes(genomes, config):
         with open('best_scores.txt', 'w') as f:
             for score in best_scores:
                 f.write(str(score) + '\n')
+
+    # killing the servers
+    for p in server_processes:
+        p.kill()
+        
     gen += 1
 
 
