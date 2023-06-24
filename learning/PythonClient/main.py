@@ -12,11 +12,17 @@ from chillin_client import GameClient
 from ai import AI
 from ks.models import World
 
-# json config file
+# json and pickle
 import json
-
-# pickle
 import pickle
+
+
+config_path = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "configs\\gamecfg0.json"
+)
+if len(sys.argv) > 1:
+    config_path = sys.argv[1]
 
 
 config_path = os.path.join(

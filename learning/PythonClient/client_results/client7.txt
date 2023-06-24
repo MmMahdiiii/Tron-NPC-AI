@@ -1,0 +1,33 @@
+Loading config from configs\gamecfg7.json
+Loading neural network from nn\nn_7.pkl
+Starting client
+Connecting to host 'localhost' port 8002
+Connected successfully
+joined the game successfully
+Side: Yellow
+33 19
+33 19
+32 19
+32 19
+31 19
+31 19
+30 19
+30 19
+29 19
+29 19
+28 19
+28 19
+27 19
+27 19
+26 19
+26 19
+25 19
+25 19
+24 19
+24 19
+23 19
+23 19
+22 19
+22 19
+21 19
+21 19
