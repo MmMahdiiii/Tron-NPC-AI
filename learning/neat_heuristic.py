@@ -13,7 +13,7 @@ import json
 directory = os.getcwd()
 server_directory = directory + '\\PythonServer'
 client_directory = directory + '\\PythonClient'
-num_servers = 100
+num_servers = 2
 
 # TODO : run num_servers servers (pop_size % num_servers == 0)
 # TODO : each neural network would dump to a file
@@ -163,9 +163,10 @@ def eval_genomes(genomes, config):
             best_fitness = genome.fitness
             best_genome = genome
         best_scores.append(best_fitness)
-    if gen % 2 == 0:
+    os.chdir(directory)
+    if gen % 1 == 0:
         file_name = 'best_net_' + str(gen) + '.pkl'
-        file_path = 'nn\\' + file_name
+        file_path = 'solutions\\' + file_name
         net = neat.nn.FeedForwardNetwork.create(best_genome, config)
         with open(file_path, 'wb') as output:
             pickle.dump(net, output, 1)
