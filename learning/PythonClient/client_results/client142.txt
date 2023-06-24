@@ -8,5 +8,5 @@ Side: Yellow
 Winner side: Blue
 Details:
   Scores:
-    Blue -> 1
-    Yellow -> -19
+    Blue -> 7
+    Yellow -> -13

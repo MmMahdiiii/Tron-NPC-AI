@@ -2,11 +2,16 @@ Loading config from configs\gamecfg148.json
 Loading neural network from nn\nn_148.pkl
 Starting client
 Connecting to host 'localhost' port 8048
-Connected successfully
-joined the game successfully
-Side: Yellow
-Winner side: Blue
-Details:
-  Scores:
-    Blue -> 35
-    Yellow -> -7
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8048
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8048
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8048
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8048
+Failed to connect: timed out

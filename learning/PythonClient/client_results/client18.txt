@@ -4,7 +4,7 @@ Starting client
 Connecting to host 'localhost' port 8018
 Connected successfully
 joined the game successfully
-Side: Yellow
+Side: Blue
 Winner side: draw
 Details:
   Scores:

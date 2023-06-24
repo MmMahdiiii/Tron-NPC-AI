@@ -8,5 +8,5 @@ Side: Yellow
 Winner side: draw
 Details:
   Scores:
-    Blue -> -18
-    Yellow -> -18
+    Blue -> -19
+    Yellow -> -19

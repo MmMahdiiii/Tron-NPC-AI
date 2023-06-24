@@ -163,15 +163,16 @@ def eval_genomes(genomes, config):
             best_fitness = genome.fitness
             best_genome = genome
         best_scores.append(best_fitness)
-        if gen % 2 == 0:
-            file_name = 'best_genome_' + str(gen) + '.pkl'
-            file_path = 'nn\\' + file_name
-            with open(file_path, 'wb') as output:
-                pickle.dump(best_genome, output, 1)
-        # storing scores
-        with open('best_scores.txt', 'w') as f:
-            for score in best_scores:
-                f.write(str(score) + '\n')
+    if gen % 2 == 0:
+        file_name = 'best_net_' + str(gen) + '.pkl'
+        file_path = 'nn\\' + file_name
+        net = neat.nn.FeedForwardNetwork.create(best_genome, config)
+        with open(file_path, 'wb') as output:
+            pickle.dump(net, output, 1)
+    # storing scores
+    with open('best_scores.txt', 'w') as f:
+        for score in best_scores:
+            f.write(str(score) + '\n')
 
     # killing the servers
     for p in server_processes:
