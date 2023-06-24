@@ -4,9 +4,9 @@ Starting client
 Connecting to host 'localhost' port 8033
 Connected successfully
 joined the game successfully
-Side: Yellow
+Side: Blue
 Winner side: Blue
 Details:
   Scores:
-    Blue -> 2
-    Yellow -> -18
+    Blue -> 1
+    Yellow -> -19

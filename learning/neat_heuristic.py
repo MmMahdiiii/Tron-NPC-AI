@@ -13,7 +13,7 @@ import json
 directory = os.getcwd()
 server_directory = directory + '\\PythonServer'
 client_directory = directory + '\\PythonClient'
-num_servers = 50
+num_servers = 100
 
 # TODO : run num_servers servers (pop_size % num_servers == 0)
 # TODO : each neural network would dump to a file
@@ -107,7 +107,10 @@ def run_games(genomes, config):
     scores = [0 for i in range(len(genomes))]
     for i, p in enumerate(processes):
         # if taking too long, kill the process
-        p.wait(250)
+        try:
+            p.wait(250)
+        except e:
+            pass
         results[i].close()
         
     for i, p in enumerate(processes):
@@ -166,7 +169,6 @@ def eval_genomes(genomes, config):
             with open(file_path, 'wb') as output:
                 pickle.dump(best_genome, output, 1)
     # storing scores
-    if gen % 1 == 0:
         with open('best_scores.txt', 'w') as f:
             for score in best_scores:
                 f.write(str(score) + '\n')

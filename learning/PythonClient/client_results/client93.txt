@@ -1,17 +1,12 @@
 Loading config from configs\gamecfg93.json
 Loading neural network from nn\nn_93.pkl
 Starting client
-Connecting to host 'localhost' port 8043
-Failed to connect: _ssl.c:1112: The handshake operation timed out
-Reconnecting in 1 seconds ...
-Connecting to host 'localhost' port 8043
-Failed to connect: attempt to connect already-connected SSLSocket!
-Reconnecting in 1 seconds ...
-Connecting to host 'localhost' port 8043
-Failed to connect: attempt to connect already-connected SSLSocket!
-Reconnecting in 1 seconds ...
-Connecting to host 'localhost' port 8043
-Failed to connect: attempt to connect already-connected SSLSocket!
-Reconnecting in 1 seconds ...
-Connecting to host 'localhost' port 8043
-Failed to connect: attempt to connect already-connected SSLSocket!
+Connecting to host 'localhost' port 8093
+Connected successfully
+joined the game successfully
+Side: Blue
+Winner side: Blue
+Details:
+  Scores:
+    Blue -> 1
+    Yellow -> -19

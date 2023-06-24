@@ -1,12 +1,12 @@
 Loading config from configs\gamecfg94.json
 Loading neural network from nn\nn_94.pkl
 Starting client
-Connecting to host 'localhost' port 8044
+Connecting to host 'localhost' port 8094
 Connected successfully
 joined the game successfully
-Side: Yellow
-Winner side: draw
+Side: Blue
+Winner side: Blue
 Details:
   Scores:
-    Blue -> -19
-    Yellow -> -19
+    Blue -> 2
+    Yellow -> -18

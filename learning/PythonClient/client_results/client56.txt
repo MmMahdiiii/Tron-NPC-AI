@@ -1,12 +1,12 @@
 Loading config from configs\gamecfg56.json
 Loading neural network from nn\nn_56.pkl
 Starting client
-Connecting to host 'localhost' port 8006
+Connecting to host 'localhost' port 8056
 Connected successfully
 joined the game successfully
-Side: Yellow
+Side: Blue
 Winner side: Yellow
 Details:
   Scores:
-    Blue -> -19
-    Yellow -> 1
+    Blue -> -18
+    Yellow -> 2

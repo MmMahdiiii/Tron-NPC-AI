@@ -5,8 +5,8 @@ Connecting to host 'localhost' port 8002
 Connected successfully
 joined the game successfully
 Side: Yellow
-Winner side: Blue
+Winner side: Yellow
 Details:
   Scores:
-    Blue -> 12
-    Yellow -> -9
+    Blue -> -16
+    Yellow -> 4

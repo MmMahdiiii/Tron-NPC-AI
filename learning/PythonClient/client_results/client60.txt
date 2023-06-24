@@ -1,12 +1,12 @@
 Loading config from configs\gamecfg60.json
 Loading neural network from nn\nn_60.pkl
 Starting client
-Connecting to host 'localhost' port 8010
+Connecting to host 'localhost' port 8060
 Connected successfully
 joined the game successfully
-Side: Yellow
+Side: Blue
 Winner side: Yellow
 Details:
   Scores:
-    Blue -> -11
-    Yellow -> 9
+    Blue -> -18
+    Yellow -> 2

@@ -1,12 +1,12 @@
 Loading config from configs\gamecfg68.json
 Loading neural network from nn\nn_68.pkl
 Starting client
-Connecting to host 'localhost' port 8018
+Connecting to host 'localhost' port 8068
 Connected successfully
 joined the game successfully
 Side: Blue
-Winner side: draw
+Winner side: Yellow
 Details:
   Scores:
-    Blue -> -11
-    Yellow -> -11
+    Blue -> -19
+    Yellow -> 1

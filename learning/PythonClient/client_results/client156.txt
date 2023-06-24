@@ -2,16 +2,11 @@ Loading config from configs\gamecfg156.json
 Loading neural network from nn\nn_156.pkl
 Starting client
 Connecting to host 'localhost' port 8056
-Failed to connect: timed out
-Reconnecting in 1 seconds ...
-Connecting to host 'localhost' port 8056
-Failed to connect: timed out
-Reconnecting in 1 seconds ...
-Connecting to host 'localhost' port 8056
-Failed to connect: timed out
-Reconnecting in 1 seconds ...
-Connecting to host 'localhost' port 8056
-Failed to connect: timed out
-Reconnecting in 1 seconds ...
-Connecting to host 'localhost' port 8056
-Failed to connect: timed out
+Connected successfully
+joined the game successfully
+Side: Yellow
+Winner side: Yellow
+Details:
+  Scores:
+    Blue -> -18
+    Yellow -> 2

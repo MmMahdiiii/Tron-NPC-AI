@@ -2,14 +2,11 @@ Loading config from configs\gamecfg35.json
 Loading neural network from nn\nn_35.pkl
 Starting client
 Connecting to host 'localhost' port 8035
-Failed to connect: timed out
-Reconnecting in 1 seconds ...
-Connecting to host 'localhost' port 8035
 Connected successfully
 joined the game successfully
 Side: Blue
 Winner side: Blue
 Details:
   Scores:
-    Blue -> 4
-    Yellow -> -16
+    Blue -> 7
+    Yellow -> -13
