@@ -293,7 +293,7 @@ class AI(RealtimeAI):
         return information
 
     def decide(self):
-        self.i += 1
+        # self.i += 1
 
         # depth = 1
         # self.min_max_tree(depth, self.world)
