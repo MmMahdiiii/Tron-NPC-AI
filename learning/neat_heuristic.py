@@ -13,8 +13,8 @@ import json
 directory = os.getcwd()
 server_directory = directory + '\\PythonServer'
 client_directory = directory + '\\PythonClient'
+num_servers = 5
 
-# TODO : peek a random map
 # TODO : run num_servers servers (pop_size % num_servers == 0)
 # TODO : each neural network would dump to a file
 # TODO : generate python client for each neural network
@@ -32,15 +32,14 @@ def init_maps():
         maps.append('maps/' + filename)
 
 
-def generate_servers_config(num_servers):
+def generate_servers_config(chosen_map):
     #     read the config gamecfg.json
     #     change the ports of the configs to be different
-    config_path = os.path.join(
+    server_config_path = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
         "gamecfg.json"
     )
-    chosen_map = random.choice(maps)
-    with open(config_path, 'r') as f:
+    with open(server_config_path, 'r') as f:
         config = json.load(f)
     for i in range(num_servers):
         config['net']['port'] = 8000 + i
@@ -55,20 +54,20 @@ def generate_servers_config(num_servers):
             json.dump(config, outfile)
 
 
-def run_server(num_servers):
+def run_server(_map):
     #   give each server a config file_path as an argument
     #   change the directory to the server directory
-    generate_servers_config(num_servers)
+    generate_servers_config(_map)
     os.chdir(server_directory)
     server_processes = []
-    results = [open('server_results\\server' + str(i) + '.txt', 'w') for i in range(num_servers)]
     for i in range(num_servers):
         file_name = 'gamecfg' + str(i) + '.json'
         file_path = 'server_configs\\' + file_name
-        server_processes.append(subprocess.Popen(['python', 'main.py', file_path], stdout=results[i]))
+        server_processes.append(subprocess.Popen(['python', 'main.py', file_path]))
     return server_processes
 
-def run_clients(genomes, num_servers, config):
+
+def run_games(genomes, config):
     #     dump each nn to a file with name nn_i in nn folder
     #     generate a config file for each client in configs folder
     #     relocate to the client directory
@@ -76,11 +75,15 @@ def run_clients(genomes, num_servers, config):
 
     os.chdir(client_directory)
 
-    with open('gamecfg.json', 'w') as sample_config:
+    with open('gamecfg2.json', 'r') as sample_config:
         client_config = json.load(sample_config)
 
+    results = [open('client_results\\client' + str(i) + '.txt', 'w') for i in range(len(genomes))]
+    gens = []
+    processes = []
     counter = 0
     for genome_id, genome in genomes:
+        gens.append(genome)
         genome.fitness = 0  # start with fitness level of 0
         net = neat.nn.FeedForwardNetwork.create(genome, config)
         file_name = 'nn_' + str(counter) + '.pkl'
@@ -89,140 +92,96 @@ def run_clients(genomes, num_servers, config):
             pickle.dump(net, output, 1)
 
         # generate a config file for each client in configs folder
-        config_path = 'configs\\' + 'gamecfg' + str(counter) + '.json'
+        client_config_path = 'configs\\' + 'gamecfg' + str(counter) + '.json'
         client_config['ai']['nn_path'] = file_path
         client_config['net']['port'] = 8000 + counter % num_servers
+        client_config['ai']['stdout'] = 'client_results\\client' + str(counter) + '.txt'
 
-        with open(config_path, 'w') as outfile:
+        with open(client_config_path, 'w') as outfile:
             json.dump(client_config, outfile)
 
-        subprocess.Popen(['python', 'main.py', config_path])
+        p = subprocess.Popen(['python', 'main.py', client_config_path], stdout=results[counter])
+        processes.append(p)
         counter += 1
 
+    scores = [0 for i in range(len(genomes))]
+    for i, p in enumerate(processes):
+        p.wait()
+        results[i].close()
+        with open('client_results\\client' + str(i) + '.txt', 'r') as f:
+            lines = f.readlines()
+            #           Side: Yellow
+            #           Side: Blue
+
+            color = 'Yellow'
+            for line in lines:
+                if line.startswith('Side: '):
+                    color = line.split()[1]
+                if line.startswith('    Blue -> '):
+                    blue_score = int(line.split('-> ')[1])
+                    if color == 'Blue':
+                        scores[i] += blue_score
+                if line.startswith('    Yellow -> '):
+                    yellow_score = int(line.split('-> ')[1])
+                    if color == 'Yellow':
+                        scores[i] += yellow_score
+
+    for i, genome in enumerate(gens):
+        print('genome ', i, ' score: ', scores[i])
+        genome.fitness = scores[i]
 
 
+def eval_genomes(genomes, config):
+
+    gen = 1
+
+    # select a random map
+    chosen_map = random.choice(maps)
+    # run the servers
+    for slide in range(0, len(genomes), 2 * num_servers):
+        server_processes = run_server(chosen_map)
+        # run the clients
+        print('generation: ', gen, ' starting games for genomes: ', slide, slide + 2 * num_servers - 1)
+        run_games(genomes[slide:slide + 2 * num_servers], config)
+
+        # break if score gets large enough
+        '''if score > 20:
+            pickle.dump(nets[0],open("best.pickle", "wb"))
+            break'''
 
 
+def run(config_file):
+    """
+    runs the NEAT algorithm to train a neural network to play flappy bird.
+    :param config_file: location of config file
+    :return: None
+    """
+    config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
+                                neat.DefaultSpeciesSet, neat.DefaultStagnation,
+                                config_file)
 
-#
-# def eval_genomes(genomes, config):
-#     global WIN, gen
-#     win = WIN
-#     gen += 1
-#
-#     nets = []
-#     ge = []
-#     for genome_id, genome in genomes:
-#         genome.fitness = 0  # start with fitness level of 0
-#         net = neat.nn.FeedForwardNetwork.create(genome, config)
-#         nets.append(net)
-#         birds.append(Bird(230, 350))
-#         ge.append(genome)
-#
-#     base = Base(FLOOR)
-#     pipes = [Pipe(700)]
-#     score = 0
-#
-#     clock = pygame.time.Clock()
-#
-#     run = True
-#     while run and len(birds) > 0:
-#         clock.tick(30)
-#
-#         pipe_ind = 0
-#         if len(birds) > 0:
-#             if len(pipes) > 1 and birds[0].x > pipes[0].x + pipes[
-#                 0].PIPE_TOP.get_width():  # determine whether to use the first or second
-#                 pipe_ind = 1  # pipe on the screen for neural network input
-#
-#         for x, bird in enumerate(birds):  # give each bird a fitness of 0.1 for each frame it stays alive
-#             ge[x].fitness += 0.1
-#             bird.move()
-#
-#             # send bird location, top pipe location and bottom pipe location and determine from network whether to jump or not
-#             output = nets[birds.index(bird)].activate(
-#                 (bird.y, abs(bird.y - pipes[pipe_ind].height), abs(bird.y - pipes[pipe_ind].bottom)))
-#
-#             if output[
-#                 0] > 0.5:  # we use a tanh activation function so result will be between -1 and 1. if over 0.5 jump
-#                 bird.jump()
-#
-#         base.move()
-#
-#         rem = []
-#         add_pipe = False
-#         for pipe in pipes:
-#             pipe.move()
-#             # check for collision
-#             for bird in birds:
-#                 if pipe.collide(bird, win):
-#                     ge[birds.index(bird)].fitness -= 1
-#                     nets.pop(birds.index(bird))
-#                     ge.pop(birds.index(bird))
-#                     birds.pop(birds.index(bird))
-#
-#             if pipe.x + pipe.PIPE_TOP.get_width() < 0:
-#                 rem.append(pipe)
-#
-#             if not pipe.passed and pipe.x < bird.x:
-#                 pipe.passed = True
-#                 add_pipe = True
-#
-#         if add_pipe:
-#             score += 1
-#             # can add this line to give more reward for passing through a pipe (not required)
-#             for genome in ge:
-#                 genome.fitness += 5
-#             pipes.append(Pipe(WIN_WIDTH))
-#
-#         for r in rem:
-#             pipes.remove(r)
-#
-#         for bird in birds:
-#             if bird.y + bird.img.get_height() - 10 >= FLOOR or bird.y < -50:
-#                 nets.pop(birds.index(bird))
-#                 ge.pop(birds.index(bird))
-#                 birds.pop(birds.index(bird))
-#
-#         draw_window(WIN, birds, pipes, base, score, gen, pipe_ind)
-#
-#         # break if score gets large enough
-#         '''if score > 20:
-#             pickle.dump(nets[0],open("best.pickle", "wb"))
-#             break'''
-#
-#
-# def run(config_file):
-#     """
-#     runs the NEAT algorithm to train a neural network to play flappy bird.
-#     :param config_file: location of config file
-#     :return: None
-#     """
-#     config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
-#                                 neat.DefaultSpeciesSet, neat.DefaultStagnation,
-#                                 config_file)
-#
-#     # Create the population, which is the top-level object for a NEAT run.
-#     p = neat.Population(config)
-#
-#     # Add a stdout reporter to show progress in the terminal.
-#     p.add_reporter(neat.StdOutReporter(True))
-#     stats = neat.StatisticsReporter()
-#     p.add_reporter(stats)
-#     # p.add_reporter(neat.Checkpointer(5))
-#
-#     # Run for up to 50 generations.
-#     winner = p.run(eval_genomes, 50)
-#
-#     # show final stats
-#     print('\nBest genome:\n{!s}'.format(winner))
-#
-#
-# if __name__ == '__main__':
-#     # Determine path to configuration file. This path manipulation is
-#     # here so that the script will run successfully regardless of the
-#     # current working directory.
-#     local_dir = os.path.dirname(__file__)
-#     config_path = os.path.join(local_dir, 'config-feedforward.txt')
-#     run(config_path)
+    # Create the population, which is the top-level object for a NEAT run.
+    p = neat.Population(config)
 
+    # Add a stdout reporter to show progress in the terminal.
+    p.add_reporter(neat.StdOutReporter(True))
+    stats = neat.StatisticsReporter()
+    p.add_reporter(stats)
+    # p.add_reporter(neat.Checkpointer(5))
+
+    # Run for up to 50 generations.
+    winner = p.run(eval_genomes, 50)
+
+    # show final stats
+    print('\nBest genome:\n{!s}'.format(winner))
+
+
+if __name__ == '__main__':
+    # Determine path to configuration file. This path manipulation is
+    # here so that the script will run successfully regardless of the
+    # current working directory.
+    local_dir = os.path.dirname(__file__)
+    config_path = os.path.join(local_dir, 'config-feedforward.txt')
+    init_maps()
+
+    run(config_path)

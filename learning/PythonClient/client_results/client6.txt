@@ -1,0 +1,15 @@
+Loading config from configs\gamecfg6.json
+Loading neural network from nn\nn_6.pkl
+Starting client
+Connecting to host 'localhost' port 8001
+Connected successfully
+joined the game successfully
+Side: Yellow
+33 19
+33 19
+33 Winner side: Blue20
+
+Details:
+  Scores:
+    Blue -> 1
+    Yellow -> -19
