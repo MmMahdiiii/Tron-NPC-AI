@@ -108,11 +108,11 @@ def run_games(genomes, config):
     for i, p in enumerate(processes):
         # if taking too long, kill the process
         try:
-            p.wait(250)
-        except e:
+            p.wait(150)
+        except subprocess.TimeoutExpired:
             pass
         results[i].close()
-        
+
     for i, p in enumerate(processes):
         with open('client_results\\client' + str(i) + '.txt', 'r') as f:
             lines = f.readlines()
@@ -168,7 +168,7 @@ def eval_genomes(genomes, config):
             file_path = 'nn\\' + file_name
             with open(file_path, 'wb') as output:
                 pickle.dump(best_genome, output, 1)
-    # storing scores
+        # storing scores
         with open('best_scores.txt', 'w') as f:
             for score in best_scores:
                 f.write(str(score) + '\n')
@@ -176,7 +176,7 @@ def eval_genomes(genomes, config):
     # killing the servers
     for p in server_processes:
         p.kill()
-        
+
     gen += 1
 
 
