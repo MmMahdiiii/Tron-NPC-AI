@@ -106,8 +106,8 @@ def run_games(genomes, config):
 
     scores = [0 for i in range(len(genomes))]
     for i, p in enumerate(processes):
-        
-        p.wait()
+        # if taking too long, kill the process
+        p.wait(250)
         results[i].close()
         
     for i, p in enumerate(processes):
