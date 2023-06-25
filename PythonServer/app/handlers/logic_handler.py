@@ -7,14 +7,12 @@ from ..ks.commands import ChangeDirection
 
 class LogicHandler:
 
-    def __init__ (self, world, sides):
+    def __init__(self, world, sides):
         self._sides = sides
         self.world = world
 
-
     def initialize(self):
         self.clear_commands()
-
 
     def store_command(self, side_name, command):
         ### This method should be removed after adding 'import' feature to the koala-serializer ###
@@ -26,10 +24,8 @@ class LogicHandler:
             convert_command(command)
         self._last_cycle_commands[side_name][command.name()] = command
 
-
     def clear_commands(self):
         self._last_cycle_commands = {side: {} for side in self._sides}
-
 
     def process(self, current_cycle):
         gui_events = []
@@ -37,10 +33,8 @@ class LogicHandler:
         gui_events.extend(self.world.tick())
         return gui_events
 
-
     def get_client_world(self, side_name):
         return self.world
-
 
     def check_end_game(self, current_cycle):
         end_game = self.world.check_end_game(current_cycle)

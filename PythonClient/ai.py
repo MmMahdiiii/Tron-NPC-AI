@@ -74,6 +74,17 @@ class AI(RealtimeAI):
         current_agent = copy.deepcopy(new_world.agents[self.my_side]) if is_us else \
             copy.deepcopy(new_world.agents[self.other_side])
 
+        if is_us:
+            if self.my_side == 'Yellow':
+                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.YellowWall
+            elif self.my_side == 'Blue':
+                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.BlueWall
+        else:
+            if self.other_side == 'Yellow':
+                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.YellowWall
+            elif self.other_side == 'Blue':
+                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.BlueWall
+
         # direction change
         if action == "up":
             current_agent.position.y -= 1
@@ -91,7 +102,7 @@ class AI(RealtimeAI):
         # calculate score
         current_score = new_world.scores[self.my_side] if is_us else new_world.scores[self.other_side]
         added_score_curr_agent, added_score_opp_curr_agent, current_agent = self.calculate_score(new_world, is_us,
-                                                                                            current_agent)
+                                                                                                 current_agent)
         final_score = current_score + added_score_curr_agent
         if is_us:
             new_world.scores[self.my_side] = final_score
@@ -132,8 +143,10 @@ class AI(RealtimeAI):
                         actions.append("up_off")
                     else:
                         # hitting our wall
-                        if (self.my_side == "Yellow" and world.board[y_destination][x_destination] == ECell.YellowWall) or \
-                                (self.my_side == "Blue" and world.board[y_destination][x_destination] == ECell.BlueWall):
+                        if (self.my_side == "Yellow" and world.board[y_destination][
+                            x_destination] == ECell.YellowWall) or \
+                                (self.my_side == "Blue" and world.board[y_destination][
+                                    x_destination] == ECell.BlueWall):
                             actions.append("up_on_our")
                         # hitting enemy wall
                         else:
@@ -148,8 +161,10 @@ class AI(RealtimeAI):
                         actions.append("down_off")
                     else:
                         # hitting our wall
-                        if (self.my_side == "Yellow" and world.board[y_destination][x_destination] == ECell.YellowWall) or \
-                                (self.my_side == "Blue" and world.board[y_destination][x_destination] == ECell.BlueWall):
+                        if (self.my_side == "Yellow" and world.board[y_destination][
+                            x_destination] == ECell.YellowWall) or \
+                                (self.my_side == "Blue" and world.board[y_destination][
+                                    x_destination] == ECell.BlueWall):
                             actions.append("down_on_our")
                         # hitting enemy wall
                         else:
@@ -164,8 +179,10 @@ class AI(RealtimeAI):
                         actions.append("left_off")
                     else:
                         # hitting our wall
-                        if (self.my_side == "Yellow" and world.board[y_destination][x_destination] == ECell.YellowWall) or \
-                                (self.my_side == "Blue" and world.board[y_destination][x_destination] == ECell.BlueWall):
+                        if (self.my_side == "Yellow" and world.board[y_destination][
+                            x_destination] == ECell.YellowWall) or \
+                                (self.my_side == "Blue" and world.board[y_destination][
+                                    x_destination] == ECell.BlueWall):
                             actions.append("left_on_our")
                         # hitting enemy wall
                         else:
@@ -181,8 +198,10 @@ class AI(RealtimeAI):
                     else:
                         # hitting our wall
                         ####
-                        if (self.my_side == "Yellow" and world.board[y_destination][x_destination] == ECell.YellowWall) or \
-                                (self.my_side == "Blue" and world.board[y_destination][x_destination] == ECell.BlueWall):
+                        if (self.my_side == "Yellow" and world.board[y_destination][
+                            x_destination] == ECell.YellowWall) or \
+                                (self.my_side == "Blue" and world.board[y_destination][
+                                    x_destination] == ECell.BlueWall):
                             actions.append("right_on_our")
                         # hitting enemy wall
                         else:
@@ -290,18 +309,11 @@ class AI(RealtimeAI):
         return self.nn.activate(information)
 
     def decide(self):
-
-        actions = self.get_actions(self.world, player=self.world.agents[self.my_side])
-        scores = [0] * len(actions)
-        for i, action in enumerate(actions):
-            next_direction = action.split("_")[0]
-            # activate_state = action.split("_")[1:]
-            new_world = copy.deepcopy(self.world)
-            new_world = self.game_result(new_world, next_direction, is_us=True)
-            scores[i] = self.heuristic(new_world)
-
-        best_move = int(scores.index(max(scores)))
-        move = actions[best_move].split("_")
+        world = self.world
+        depth = 2
+        print("in cycle one : ")
+        best_score, best_move = self.min_max_tree(depth, world)
+        move = best_move.split("_")
 
         if move[1] == "on":
             self.send_command(ActivateWallBreaker())
@@ -319,6 +331,7 @@ class AI(RealtimeAI):
 
     # min max tree functions
     def min_max_tree(self, depth, world):
+
         best_move = None
         best_score = float('-inf')
         for action in self.get_actions(world, player=self.my_side):
@@ -330,49 +343,36 @@ class AI(RealtimeAI):
             if new_score > best_score:
                 best_score = new_score
                 best_move = action
-                world = new_world
         # change agent direction to best move
         # todo: activate wall breaker if needed
 
         return best_score, best_move
 
     def min_val(self, depth, world):
-        # if depth == 0:
-        #     return self.heuristic(world)
-        # v = float('inf')
-        # deep copy world
-        # min finding loop operation
-        # modified world
-        # return v
-
+        depth -= 1
         # min is max of other player
         if depth == 0:
             return self.heuristic(world)
         v = float('-inf')
-        depth -= 1
-        for action in self.get_actions(world, player=self.my_side):
+        for action in self.get_actions(world, player=self.world.agents[self.other_side]):
             # deep copy from world
             new_world = copy.deepcopy(world)
-            new_world = self.game_result(new_world, action, player=self.other_side)
+            new_world = self.game_result(new_world, action, is_us=False)
             v2 = self.max_val(depth, new_world)
             if v2 > v:
                 v = v2
         return v
 
     def max_val(self, depth, world):
+        depth -= 1
         if depth == 0:
             return self.heuristic(world)
         v = float('-inf')
-        depth -= 1
-        for action in self.get_actions(world, player=self.my_side):
+        for action in self.get_actions(world, player=self.world.agents[self.my_side]):
             # deep copy from world
             new_world = copy.deepcopy(world)
-            new_world = self.game_result(new_world, action, player=self.my_side)
+            new_world = self.game_result(new_world, action, is_us=True)
             v2 = self.min_val(depth, new_world)
             if v2 > v:
                 v = v2
         return v
-        # bounded depth MinMax Tree Search
-        # calculating heuristics by using the our MagicalBrain
-        # choosing the best move
-        # TODO
