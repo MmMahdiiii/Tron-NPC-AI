@@ -48,7 +48,7 @@ node_delete_prob        = 0.30
 
 # network parameters
 num_hidden              = 0
-num_inputs              = 23
+num_inputs              = 24
 num_outputs             = 1
 
 # connection weight options
