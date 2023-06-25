@@ -13,7 +13,7 @@ import json
 directory = os.getcwd()
 server_directory = directory + '\\PythonServer'
 client_directory = directory + '\\PythonClient'
-num_servers = 500
+num_servers = 150
 
 # TODO : run num_servers servers (pop_size % num_servers == 0)
 # TODO : each neural network would dump to a file
@@ -104,7 +104,7 @@ def run_games(genomes, config):
         counter += 1
 
     scores = [0 for i in range(len(genomes))]
-    time.sleep(1)
+    time.sleep(5)
     for i, p in enumerate(processes):
         # if taking too long, kill the process
         try:
@@ -114,23 +114,26 @@ def run_games(genomes, config):
         results[i].close()
 
     for i, p in enumerate(processes):
-        with open('client_results\\client' + str(i) + '.txt', 'r') as f:
-            lines = f.readlines()
-            #           Side: Yellow
-            #           Side: Blue
+        try:
+            with open('client_results\\client' + str(i) + '.txt', 'r') as f:
+                lines = f.readlines()
+                #           Side: Yellow
+                #           Side: Blue
 
-            color = 'Yellow'
-            for line in lines:
-                if line.startswith('Side: '):
-                    color = line.split()[1]
-                if line.startswith('    Blue -> '):
-                    blue_score = int(line.split('-> ')[1])
-                    if color == 'Blue':
-                        scores[i] += blue_score
-                if line.startswith('    Yellow -> '):
-                    yellow_score = int(line.split('-> ')[1])
-                    if color == 'Yellow':
-                        scores[i] += yellow_score
+                color = 'Yellow'
+                for line in lines:
+                    if line.startswith('Side: '):
+                        color = line.split()[1]
+                    if line.startswith('    Blue -> '):
+                        blue_score = int(line.split('-> ')[1])
+                        if color == 'Blue':
+                            scores[i] += blue_score
+                    if line.startswith('    Yellow -> '):
+                        yellow_score = int(line.split('-> ')[1])
+                        if color == 'Yellow':
+                            scores[i] += yellow_score
+        except:
+            pass
         
 
     for i, genome in enumerate(gens):
