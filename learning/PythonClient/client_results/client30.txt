@@ -1,0 +1,94 @@
+Loading config from configs\gamecfg30.json
+Loading neural network from nn\nn_30.pkl
+Starting client
+Connecting to host 'localhost' port 8030
+Connected successfully
+joined the game successfully
+Side: Blue
+2 1
+1 2
+3 1
+2 2
+4 1
+3 2
+5 1
+4 2
+6 1
+5 2
+7 1
+6 2
+8 1
+7 2
+9 1
+8 2
+10 1
+9 2
+11 1
+10 2
+12 1
+11 2
+12 2
+11 3
+10 2
+12 3
+11 4
+10 3
+12 4
+11 5
+10 4
+12 3
+13 4
+12 5
+13 3
+14 4
+13 5
+14 3
+15 4
+14 5
+14 2
+15 3
+13 3
+13 2
+13 4
+12 3
+13 1
+14 2
+12 2
+12 1
+12 3
+11 2
+13 3
+12 4
+11 3
+13 2
+14 3
+13 4
+13 1
+14 2
+12 2
+12 1
+12 3
+11 2
+13 3
+12 4
+11 3
+13 2
+14 3
+13 4
+13 1
+14 2
+12 2
+12 1
+12 3
+11 2
+13 3
+12 4
+11 3
+13 2
+14 3
+13 4
+Winner side: Yellow
+Details:
+  Scores:
+    Blue -> -18
+    Yellow -> 29

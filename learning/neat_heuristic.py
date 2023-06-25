@@ -13,7 +13,7 @@ import json
 directory = os.getcwd()
 server_directory = directory + '\\PythonServer'
 client_directory = directory + '\\PythonClient'
-num_servers = 5
+num_servers = 200
 
 # TODO : run num_servers servers (pop_size % num_servers == 0)
 # TODO : each neural network would dump to a file
@@ -105,9 +105,16 @@ def run_games(genomes, config):
         counter += 1
 
     scores = [0 for i in range(len(genomes))]
+    time.sleep(1)
     for i, p in enumerate(processes):
-        p.wait()
+        # if taking too long, kill the process
+        try:
+            p.wait(400)
+        except subprocess.TimeoutExpired:
+            pass
         results[i].close()
+
+    for i, p in enumerate(processes):
         with open('client_results\\client' + str(i) + '.txt', 'r') as f:
             lines = f.readlines()
             #           Side: Yellow
@@ -125,29 +132,65 @@ def run_games(genomes, config):
                     yellow_score = int(line.split('-> ')[1])
                     if color == 'Yellow':
                         scores[i] += yellow_score
+        
 
     for i, genome in enumerate(gens):
         print('genome ', i, ' score: ', scores[i])
         genome.fitness = scores[i]
 
 
-def eval_genomes(genomes, config):
+best_scores = []
 
-    gen = 1
+gen = 1
+
+
+def eval_genomes(genomes, config):
+    global gen, best_scores
 
     # select a random map
     chosen_map = random.choice(maps)
     # run the servers
+    genome_groups = []
+    server_processes = []
     for slide in range(0, len(genomes), 2 * num_servers):
+        genome_groups.append(genomes[slide: slide + 2 * num_servers])
+    for genome_group in genome_groups:
         server_processes = run_server(chosen_map)
-        # run the clients
-        print('generation: ', gen, ' starting games for genomes: ', slide, slide + 2 * num_servers - 1)
-        run_games(genomes[slide:slide + 2 * num_servers], config)
+        time.sleep(10)
+        run_games(genome_group, config)
 
-        # break if score gets large enough
-        '''if score > 20:
-            pickle.dump(nets[0],open("best.pickle", "wb"))
-            break'''
+    # saving the best genome for each 2 generations
+    # saving the best fitness for each generation
+    best_fitness = 0
+    best_genome = None
+    for genome_id, genome in genomes:
+        if genome.fitness > best_fitness:
+            best_fitness = genome.fitness
+            best_genome = genome
+        best_scores.append(best_fitness)
+
+    os.chdir(directory)
+    file_name = 'best_genome_' + str(gen) + '.pkl'
+    file_path = 'solutions\\' + file_name
+    with open(file_path, 'wb') as output:
+        pickle.dump(best_genome, output, 1)
+    nn = neat.nn.FeedForwardNetwork.create(best_genome, config)
+    file_name = 'best_nn_' + str(gen) + '.pkl'
+    file_path = 'solutions\\' + file_name
+    with open(file_path, 'wb') as output:
+        pickle.dump(nn, output, 1)
+    # storing scores
+    with open('best_scores.txt', 'w') as f:
+        for score in best_scores:
+            f.write(str(score) + '\n')
+
+    # killing the servers
+    for p in server_processes:
+        p.kill()
+
+    gen += 1
+
+    time.sleep(5)
 
 
 def run(config_file):
@@ -183,5 +226,5 @@ if __name__ == '__main__':
     local_dir = os.path.dirname(__file__)
     config_path = os.path.join(local_dir, 'config-feedforward.txt')
     init_maps()
-
     run(config_path)
+    print(best_scores)

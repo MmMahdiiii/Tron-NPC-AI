@@ -1,0 +1,53 @@
+Loading config from configs\gamecfg154.json
+Loading neural network from nn\nn_154.pkl
+Starting client
+Connecting to host 'localhost' port 8154
+Connected successfully
+joined the game successfully
+Side: Blue
+2 1
+1 2
+3 1
+2 2
+4 1
+3 2
+5 1
+4 2
+6 1
+5 2
+7 1
+6 2
+7 2
+6 3
+5 2
+5 1
+5 3
+4 2
+6 1
+4 1
+4 2
+3 1
+5 2
+4 3
+3 2
+3 1
+3 3
+2 2
+4 1
+2 1
+2 2
+1 1
+1 2
+2 2
+1 3
+2 1
+3 2
+2 3
+3 1
+1 1
+1 2
+Winner side: Yellow
+Details:
+  Scores:
+    Blue -> -28
+    Yellow -> 16

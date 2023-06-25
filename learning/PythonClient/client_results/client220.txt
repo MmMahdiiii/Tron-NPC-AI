@@ -1,0 +1,75 @@
+Loading config from configs\gamecfg220.json
+Loading neural network from nn\nn_220.pkl
+Starting client
+Connecting to host 'localhost' port 8020
+Connected successfully
+joined the game successfully
+Side: Yellow
+33 18
+32 19
+33 17
+32 18
+33 16
+32 17
+33 15
+32 16
+33 14
+32 15
+33 13
+32 14
+32 13
+32 15
+31 14
+32 12
+33 13
+31 13
+32 11
+33 12
+31 12
+31 11
+31 13
+30 12
+31 10
+32 11
+30 11
+30 10
+30 12
+29 11
+30 9
+31 10
+29 10
+29 9
+29 11
+28 10
+29 8
+30 9
+28 9
+28 8
+28 10
+27 9
+28 7
+29 8
+27 8
+27 7
+27 9
+26 8
+28 9
+27 10
+26 9
+28 10
+27 11
+26 10
+28 11
+27 12
+26 11
+28 12
+27 13
+26 12
+28 11
+29 12
+28 13
+Winner side: Yellow
+Details:
+  Scores:
+    Blue -> -26
+    Yellow -> 22

@@ -4,7 +4,6 @@
 import random
 import math
 import pickle
-from torch import nn
 import copy
 
 # chillin imports
@@ -218,8 +217,8 @@ class AI(RealtimeAI):
 
         x, y = world.agents[self.my_side].position.x, world.agents[self.my_side].position.y
 
-        width = len(world.board[0])
-        height = len(world.board)
+        height = len(world.board[0])
+        width = len(world.board)
 
         pos = []
         for i in range(8):
@@ -283,12 +282,103 @@ class AI(RealtimeAI):
         information = distances + enemies + [world.agents[self.my_side].wall_breaker_cooldown,
                                              world.agents[self.my_side].wall_breaker_rem_time,
                                              world.agents[self.my_side].health]
+        print(information)
         onehot_direction = [0] * 4
         onehot_direction[world.agents[self.my_side].direction.value] = 1
         information += onehot_direction
         return self.nn.activate(information)
 
     def decide(self):
+        # self.i += 1
+
+        # depth = 1
+        # self.min_max_tree(depth, self.world)
+
+        # test
+        best_move = None
+        best_score = float('-inf')
+        actions = self.get_actions(self.world, player=self.world.agents[self.my_side])
+        scores = [0] * len(actions)
+        for i, action in enumerate(actions):
+            next_direction = action.split("_")[0]
+            # activate_state = action.split("_")[1:]
+            new_world = copy.deepcopy(self.world)
+            new_world = self.game_result(new_world, next_direction, is_us=True)
+            scores[i] = self.heuristic(new_world)
+
+        best_move = int(scores.index(max(scores)))
+        move = actions[best_move].split("_")
+
+        if move[1] == "on":
+            self.send_command(ActivateWallBreaker())
+
+        if move[0] == "right":
+            self.send_command(ChangeDirection(EDirection.Right))
+        elif move[0] == "left":
+            self.send_command(ChangeDirection(EDirection.Left))
+        elif move[0] == "up":
+            self.send_command(ChangeDirection(EDirection.Up))
+        elif move[0] == "down":
+            self.send_command(ChangeDirection(EDirection.Down))
+
+
+
+    # min max tree functions
+    def min_max_tree(self, depth, world):
+
+        best_move = None
+        best_score = float('-inf')
+        for action in self.get_actions(world, player=self.my_side):
+            next_direction = action.split("_")[0]
+            activate_state = action.split("_")[1:]
+            new_world = copy.deepcopy(world)
+            new_world = self.game_result(new_world, next_direction, is_us=True)
+            new_score = self.min_val(depth, new_world)
+            if new_score > best_score:
+                best_score = new_score
+                best_move = action
+                world = new_world
+        # change agent direction to best move
+        # todo: activate wall breaker if needed
+
+        return best_score, best_move
+
+    def min_val(self, depth, world):
+        # if depth == 0:
+        #     return self.heuristic(world)
+        # v = float('inf')
+        # deep copy world
+        # min finding loop operation
+        # modified world
+        # return v
+
+        # min is max of other player
+        if depth == 0:
+            return self.heuristic(world)
+        v = float('-inf')
+        depth -= 1
+        for action in self.get_actions(world, player=self.my_side):
+            # deep copy from world
+            new_world = copy.deepcopy(world)
+            new_world = self.game_result(new_world, action, player=self.other_side)
+            v2 = self.max_val(depth, new_world)
+            if v2 > v:
+                v = v2
+        return v
+
+    def max_val(self, depth, world):
+        if depth == 0:
+            return self.heuristic(world)
+        v = float('-inf')
+        depth -= 1
+        for action in self.get_actions(world, player=self.my_side):
+            # deep copy from world
+            new_world = copy.deepcopy(world)
+            new_world = self.game_result(new_world, action, player=self.my_side)
+            v2 = self.min_val(depth, new_world)
+            if v2 > v:
+                v = v2
+        return v
         # self.i += 1
 
         # depth = 1
@@ -409,5 +499,7 @@ class AI(RealtimeAI):
         # calculating heuristics by using the our MagicalBrain
         # choosing the best move
         # TODO
-
-
+        print(self.heuristic(self.world))
+        self.send_command(ChangeDirection(random.choice(list(EDirection))))
+        if self.world.agents[self.my_side].wall_breaker_cooldown == 0:
+            self.send_command(ActivateWallBreaker())

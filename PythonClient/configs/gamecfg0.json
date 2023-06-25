@@ -18,7 +18,7 @@
         "agent_name": "0",
         "team_nickname": "PythonTeam2",
         "token": "team_id2-xx",
-        "nn_path": "nn\\nn_0.pkl",
+        "nn_path": "nn\\best_nn_25.pkl",
         "stdout": "client_results\\client0.txt"
     }
 }

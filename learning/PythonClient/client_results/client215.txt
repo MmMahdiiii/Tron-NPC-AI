@@ -1,0 +1,91 @@
+Loading config from configs\gamecfg215.json
+Loading neural network from nn\nn_215.pkl
+Starting client
+Connecting to host 'localhost' port 8015
+Connected successfully
+joined the game successfully
+Side: Yellow
+33 18
+32 19
+32 18
+31 19
+31 18
+30 19
+30 18
+29 19
+29 18
+28 19
+28 18
+27 19
+27 18
+26 19
+26 18
+25 19
+25 18
+24 19
+24 18
+23 19
+23 18
+22 19
+22 18
+21 19
+21 18
+20 19
+20 18
+19 19
+20 17
+21 18
+19 18
+21 17
+22 18
+21 19
+21 16
+22 17
+20 17
+22 16
+23 17
+22 18
+22 15
+23 16
+21 16
+23 15
+24 16
+23 17
+23 14
+24 15
+22 15
+22 14
+22 16
+21 15
+23 16
+22 17
+21 16
+21 15
+21 17
+20 16
+22 17
+21 18
+20 17
+20 16
+20 18
+19 17
+21 18
+20 19
+19 18
+21 17
+22 18
+21 19
+21 16
+22 17
+20 17
+20 16
+20 18
+19 17
+21 18
+20 19
+19 18
+Winner side: Blue
+Details:
+  Scores:
+    Blue -> 30
+    Yellow -> -16
