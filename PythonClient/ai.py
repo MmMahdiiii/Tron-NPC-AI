@@ -108,8 +108,16 @@ class AI(RealtimeAI):
         # update world with agent
         if is_us:
             new_world.agents[self.my_side] = current_agent
+            if self.my_side == 'Yellow':
+                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.YellowWall
+            elif self.my_side == 'Blue':
+                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.BlueWall
         else:
             new_world.agents[self.other_side] = current_agent
+            if self.other_side == 'Yellow':
+                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.YellowWall
+            elif self.other_side == 'Blue':
+                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.BlueWall
 
         return new_world
 
