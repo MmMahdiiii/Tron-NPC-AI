@@ -1,0 +1,93 @@
+Loading config from configs\gamecfg256.json
+Loading neural network from nn\nn_256.pkl
+Starting client
+Connecting to host 'localhost' port 8056
+Connected successfully
+joined the game successfully
+Side: Yellow
+33 18
+32 19
+32 18
+31 19
+31 18
+30 19
+30 18
+29 19
+29 18
+28 19
+28 18
+27 19
+27 18
+26 19
+26 18
+25 19
+25 18
+24 19
+24 18
+23 19
+23 18
+22 19
+22 18
+21 19
+22 17
+23 18
+21 18
+23 17
+24 18
+23 19
+23 16
+24 17
+22 17
+24 16
+25 17
+24 18
+24 15
+25 16
+23 16
+25 15
+26 16
+25 17
+25 14
+26 15
+24 15
+26 14
+27 15
+26 16
+26 13
+27 14
+25 14
+25 13
+25 15
+24 14
+26 15
+25 16
+24 15
+24 14
+24 16
+23 15
+25 16
+24 17
+23 16
+23 15
+23 17
+22 16
+24 17
+23 18
+22 17
+22 16
+22 18
+21 17
+23 18
+22 19
+21 18
+21 17
+21 19
+20 18
+21 16
+22 17
+20 17
+Winner side: Yellow
+Details:
+  Scores:
+    Blue -> -18
+    Yellow -> 26

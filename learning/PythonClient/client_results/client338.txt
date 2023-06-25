@@ -1,0 +1,17 @@
+Loading config from configs\gamecfg338.json
+Loading neural network from nn\nn_338.pkl
+Starting client
+Connecting to host 'localhost' port 8138
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8138
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8138
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8138
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8138
+Failed to connect: timed out

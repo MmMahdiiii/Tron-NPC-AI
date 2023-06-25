@@ -1,0 +1,84 @@
+Loading config from configs\gamecfg397.json
+Loading neural network from nn\nn_397.pkl
+Starting client
+Connecting to host 'localhost' port 8197
+Connected successfully
+joined the game successfully
+Side: Yellow
+33 18
+32 19
+33 17
+32 18
+33 16
+32 17
+33 15
+32 16
+33 14
+32 15
+33 13
+32 14
+33 12
+32 13
+32 12
+32 14
+31 13
+33 14
+32 15
+31 14
+31 13
+31 15
+30 14
+32 15
+31 16
+30 15
+30 14
+30 16
+29 15
+31 16
+30 17
+29 16
+29 15
+29 17
+28 16
+30 17
+29 18
+28 17
+28 16
+28 18
+27 17
+29 18
+28 19
+27 18
+27 17
+27 19
+26 18
+28 19
+26 19
+26 18
+25 19
+26 17
+27 18
+25 18
+26 16
+27 17
+25 17
+26 15
+27 16
+25 16
+26 14
+27 15
+25 15
+26 13
+27 14
+25 14
+26 12
+27 13
+25 13
+25 12
+25 14
+24 13
+Winner side: Yellow
+Details:
+  Scores:
+    Blue -> -24
+    Yellow -> 26

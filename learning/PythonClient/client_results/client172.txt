@@ -1,12 +1,17 @@
 Loading config from configs\gamecfg172.json
 Loading neural network from nn\nn_172.pkl
 Starting client
-Connecting to host 'localhost' port 8072
-Connected successfully
-joined the game successfully
-Side: Yellow
-Winner side: Blue
-Details:
-  Scores:
-    Blue -> 2
-    Yellow -> -18
+Connecting to host 'localhost' port 8172
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8172
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8172
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8172
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8172
+Failed to connect: timed out

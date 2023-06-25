@@ -1,0 +1,48 @@
+Loading config from configs\gamecfg364.json
+Loading neural network from nn\nn_364.pkl
+Starting client
+Connecting to host 'localhost' port 8164
+Connected successfully
+joined the game successfully
+Side: Yellow
+33 18
+32 19
+32 18
+31 19
+31 18
+30 19
+30 18
+29 19
+29 18
+28 19
+28 18
+27 19
+27 18
+26 19
+26 18
+25 19
+25 18
+24 19
+24 18
+23 19
+23 18
+22 19
+22 18
+21 19
+22 17
+23 18
+21 18
+23 17
+24 18
+23 19
+24 19
+22 19
+24 18
+25 19
+25 18
+26 19
+Winner side: Yellow
+Details:
+  Scores:
+    Blue -> -30
+    Yellow -> 13

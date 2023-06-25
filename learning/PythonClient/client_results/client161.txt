@@ -1,12 +1,46 @@
 Loading config from configs\gamecfg161.json
 Loading neural network from nn\nn_161.pkl
 Starting client
-Connecting to host 'localhost' port 8061
+Connecting to host 'localhost' port 8161
 Connected successfully
 joined the game successfully
-Side: Yellow
-Winner side: Yellow
+Side: Blue
+2 1
+1 2
+3 1
+2 2
+4 1
+3 2
+5 1
+4 2
+6 1
+5 2
+7 1
+6 2
+8 1
+7 2
+9 1
+8 2
+10 1
+9 2
+11 1
+10 2
+12 1
+11 2
+13 1
+12 2
+14 1
+13 2
+15 1
+14 2
+16 1
+15 2
+17 1
+16 2
+18 1
+17 2
+Winner side: Blue
 Details:
   Scores:
-    Blue -> -19
-    Yellow -> 1
+    Blue -> 16
+    Yellow -> -32

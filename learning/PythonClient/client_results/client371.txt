@@ -1,0 +1,55 @@
+Loading config from configs\gamecfg371.json
+Loading neural network from nn\nn_371.pkl
+Starting client
+Connecting to host 'localhost' port 8171
+Connected successfully
+joined the game successfully
+Side: Yellow
+33 18
+32 19
+32 18
+31 19
+31 18
+30 19
+31 17
+32 18
+30 18
+32 17
+33 18
+32 19
+33 17
+33 19
+33 16
+32 17
+32 16
+32 18
+31 17
+33 18
+32 19
+31 18
+31 17
+31 19
+30 18
+32 19
+30 19
+30 18
+29 19
+30 17
+31 18
+29 18
+31 17
+32 18
+31 19
+32 17
+33 18
+32 19
+32 16
+33 17
+31 17
+33 16
+33 18
+Winner side: Blue
+Details:
+  Scores:
+    Blue -> 16
+    Yellow -> -30

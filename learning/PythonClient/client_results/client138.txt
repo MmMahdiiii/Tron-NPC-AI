@@ -1,12 +1,17 @@
 Loading config from configs\gamecfg138.json
 Loading neural network from nn\nn_138.pkl
 Starting client
-Connecting to host 'localhost' port 8038
-Connected successfully
-joined the game successfully
-Side: Yellow
-Winner side: draw
-Details:
-  Scores:
-    Blue -> -19
-    Yellow -> -19
+Connecting to host 'localhost' port 8138
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8138
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8138
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8138
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8138
+Failed to connect: timed out

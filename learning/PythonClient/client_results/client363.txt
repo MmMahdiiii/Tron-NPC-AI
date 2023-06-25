@@ -1,0 +1,17 @@
+Loading config from configs\gamecfg363.json
+Loading neural network from nn\nn_363.pkl
+Starting client
+Connecting to host 'localhost' port 8163
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8163
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8163
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8163
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8163
+Failed to connect: timed out

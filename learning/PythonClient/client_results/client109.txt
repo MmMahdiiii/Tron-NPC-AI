@@ -1,12 +1,100 @@
 Loading config from configs\gamecfg109.json
 Loading neural network from nn\nn_109.pkl
 Starting client
-Connecting to host 'localhost' port 8009
+Connecting to host 'localhost' port 8109
 Connected successfully
 joined the game successfully
-Side: Yellow
-Winner side: Yellow
+Side: Blue
+2 1
+1 2
+2 2
+1 3
+2 1
+3 2
+2 3
+3 3
+2 4
+1 3
+3 2
+4 3
+3 4
+4 4
+3 5
+2 4
+4 3
+5 4
+4 5
+5 5
+4 6
+3 5
+5 4
+6 5
+5 6
+6 6
+5 7
+4 6
+6 5
+7 6
+6 7
+7 7
+6 8
+5 7
+7 6
+8 7
+7 8
+8 8
+7 9
+6 8
+8 7
+9 8
+8 9
+9 9
+8 10
+7 9
+9 8
+10 9
+9 10
+10 10
+9 11
+8 10
+10 9
+11 10
+10 11
+11 11
+10 12
+9 11
+11 10
+12 11
+11 12
+12 12
+11 13
+10 12
+12 11
+13 12
+12 13
+13 13
+12 14
+11 13
+13 12
+14 13
+13 14
+14 14
+13 15
+12 14
+14 13
+15 14
+14 15
+15 15
+14 16
+13 15
+15 14
+16 15
+15 16
+16 16
+15 17
+14 16
+Winner side: Blue
 Details:
   Scores:
-    Blue -> -19
-    Yellow -> 1
+    Blue -> 29
+    Yellow -> -19

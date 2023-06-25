@@ -1,0 +1,59 @@
+Loading config from configs\gamecfg280.json
+Loading neural network from nn\nn_280.pkl
+Starting client
+Connecting to host 'localhost' port 8080
+Connected successfully
+joined the game successfully
+Side: Yellow
+33 18
+32 19
+33 17
+32 18
+33 16
+32 17
+33 15
+32 16
+33 14
+32 15
+33 13
+32 14
+33 12
+32 13
+32 12
+32 14
+31 13
+31 12
+31 14
+30 13
+30 12
+30 14
+29 13
+29 12
+29 14
+28 13
+28 12
+28 14
+27 13
+27 12
+27 14
+26 13
+26 12
+26 14
+25 13
+25 12
+25 14
+24 13
+24 12
+24 14
+23 13
+23 12
+23 14
+22 13
+22 12
+22 14
+21 13
+Winner side: Yellow
+Details:
+  Scores:
+    Blue -> -29
+    Yellow -> 17

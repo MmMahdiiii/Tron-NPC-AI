@@ -1,0 +1,17 @@
+Loading config from configs\gamecfg305.json
+Loading neural network from nn\nn_305.pkl
+Starting client
+Connecting to host 'localhost' port 8105
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8105
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8105
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8105
+Failed to connect: timed out
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8105
+Failed to connect: timed out

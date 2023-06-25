@@ -1,0 +1,74 @@
+Loading config from configs\gamecfg202.json
+Loading neural network from nn\nn_202.pkl
+Starting client
+Connecting to host 'localhost' port 8002
+Connected successfully
+joined the game successfully
+Side: Yellow
+33 18
+32 19
+32 18
+31 19
+31 18
+30 19
+31 17
+32 18
+30 18
+30 17
+30 19
+29 18
+31 19
+29 19
+29 18
+28 19
+28 18
+27 19
+27 18
+26 19
+26 18
+25 19
+25 18
+24 19
+24 18
+23 19
+23 18
+22 19
+22 18
+21 19
+21 18
+20 19
+20 18
+19 19
+20 17
+21 18
+19 18
+21 17
+22 18
+21 19
+22 19
+20 19
+22 18
+23 19
+22 17
+23 18
+21 18
+21 17
+21 19
+20 18
+22 19
+20 19
+22 18
+23 19
+22 17
+23 18
+21 18
+21 17
+21 19
+20 18
+22 19
+20 19
+Winner side: Blue
+Details:
+  Scores:
+    Blue -> 26
+    Yellow -> -21

@@ -13,7 +13,7 @@ import json
 directory = os.getcwd()
 server_directory = directory + '\\PythonServer'
 client_directory = directory + '\\PythonClient'
-num_servers = 100
+num_servers = 200
 
 # TODO : run num_servers servers (pop_size % num_servers == 0)
 # TODO : each neural network would dump to a file
@@ -109,7 +109,7 @@ def run_games(genomes, config):
     for i, p in enumerate(processes):
         # if taking too long, kill the process
         try:
-            p.wait(150)
+            p.wait(250)
         except subprocess.TimeoutExpired:
             pass
         results[i].close()
@@ -141,8 +141,9 @@ def run_games(genomes, config):
 best_scores = []
 
 
+gen = 1
 def eval_genomes(genomes, config):
-    gen = 1
+
 
     # select a random map
     chosen_map = random.choice(maps)
@@ -153,7 +154,7 @@ def eval_genomes(genomes, config):
         genome_groups.append(genomes[slide: slide + 2 * num_servers])
     for genome_group in genome_groups:
         server_processes = run_server(chosen_map)
-        time.sleep(2)
+        time.sleep(7)
         run_games(genome_group, config)
 
     # saving the best genome for each 2 generations

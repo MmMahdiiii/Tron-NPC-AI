@@ -1,12 +1,93 @@
 Loading config from configs\gamecfg158.json
 Loading neural network from nn\nn_158.pkl
 Starting client
-Connecting to host 'localhost' port 8058
+Connecting to host 'localhost' port 8158
 Connected successfully
 joined the game successfully
-Side: Yellow
+Side: Blue
+2 1
+1 2
+3 1
+2 2
+4 1
+3 2
+5 1
+4 2
+6 1
+5 2
+7 1
+6 2
+8 1
+7 2
+9 1
+8 2
+10 1
+9 2
+10 2
+9 3
+8 2
+10 3
+9 4
+8 3
+10 4
+9 5
+8 4
+10 5
+9 6
+8 5
+10 6
+9 7
+8 6
+10 7
+9 8
+8 7
+10 8
+9 9
+8 8
+10 9
+9 10
+8 9
+10 10
+9 11
+8 10
+10 11
+9 12
+8 11
+10 12
+9 13
+8 12
+10 13
+9 14
+8 13
+10 14
+9 15
+8 14
+10 15
+9 16
+8 15
+10 16
+9 17
+8 16
+10 17
+9 18
+8 17
+10 18
+9 19
+8 18
+10 19
+8 19
+10 18
+11 19
+10 17
+11 18
+9 18
+9 17
+9 19
+8 18
+10 19
+8 19
 Winner side: Blue
 Details:
   Scores:
-    Blue -> 4
-    Yellow -> -16
+    Blue -> 28
+    Yellow -> -18

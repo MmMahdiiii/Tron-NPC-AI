@@ -1,12 +1,64 @@
 Loading config from configs\gamecfg187.json
 Loading neural network from nn\nn_187.pkl
 Starting client
-Connecting to host 'localhost' port 8087
+Connecting to host 'localhost' port 8187
 Connected successfully
 joined the game successfully
-Side: Yellow
-Winner side: Yellow
+Side: Blue
+2 1
+1 2
+3 1
+2 2
+4 1
+3 2
+5 1
+4 2
+6 1
+5 2
+7 1
+6 2
+8 1
+7 2
+9 1
+8 2
+10 1
+9 2
+11 1
+10 2
+12 1
+11 2
+13 1
+12 2
+14 1
+13 2
+15 1
+14 2
+16 1
+15 2
+17 1
+16 2
+18 1
+17 2
+19 1
+18 2
+20 1
+19 2
+21 1
+20 2
+22 1
+21 2
+23 1
+22 2
+24 1
+23 2
+25 1
+24 2
+26 1
+25 2
+27 1
+26 2
+Winner side: draw
 Details:
   Scores:
-    Blue -> -18
-    Yellow -> 2
+    Blue -> 25
+    Yellow -> 25
