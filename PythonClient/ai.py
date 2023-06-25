@@ -300,8 +300,8 @@ class AI(RealtimeAI):
 
         information = distances + enemies + [world.agents[self.my_side].wall_breaker_cooldown,
                                              world.agents[self.my_side].wall_breaker_rem_time,
-                                             world.agents[self.my_side].health]
-                                             # ,world.scores[self.my_side] - world.scores[self.other_side]]
+                                             world.agents[self.my_side].health,
+                                             world.scores[self.my_side] - world.scores[self.other_side]]
         print(information)
         onehot_direction = [0] * 4
         onehot_direction[world.agents[self.my_side].direction.value] = 1

@@ -36,11 +36,11 @@
 
     "agents": {
         "Blue": {
-            "position": {"x": 1, "y": 19},
+            "position": {"x": 3, "y": 1},
             "direction": "Right"
         },
         "Yellow": {
-            "position": {"x": 15, "y": 19},
+            "position": {"x": 29, "y": 19},
             "direction": "Left"
         }
     }

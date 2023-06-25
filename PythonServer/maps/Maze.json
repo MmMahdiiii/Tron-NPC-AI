@@ -40,7 +40,7 @@
             "direction": "Right"
         },
         "Yellow": {
-            "position": {"x": 33, "y": 19},
+            "position": {"x": 19, "y": 19},
             "direction": "Left"
         }
     }
