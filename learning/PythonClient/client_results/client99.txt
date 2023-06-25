@@ -5,8 +5,4 @@ Connecting to host 'localhost' port 8099
 Connected successfully
 joined the game successfully
 Side: Blue
-Winner side: Blue
-Details:
-  Scores:
-    Blue -> 5
-    Yellow -> -15
+Connection closed

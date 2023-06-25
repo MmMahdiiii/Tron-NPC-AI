@@ -13,7 +13,7 @@ import json
 directory = os.getcwd()
 server_directory = directory + '\\PythonServer'
 client_directory = directory + '\\PythonClient'
-num_servers = 2
+num_servers = 100
 
 # TODO : run num_servers servers (pop_size % num_servers == 0)
 # TODO : each neural network would dump to a file
@@ -105,6 +105,7 @@ def run_games(genomes, config):
         counter += 1
 
     scores = [0 for i in range(len(genomes))]
+    time.sleep(1)
     for i, p in enumerate(processes):
         # if taking too long, kill the process
         try:
@@ -152,6 +153,7 @@ def eval_genomes(genomes, config):
         genome_groups.append(genomes[slide: slide + 2 * num_servers])
     for genome_group in genome_groups:
         server_processes = run_server(chosen_map)
+        time.sleep(2)
         run_games(genome_group, config)
 
     # saving the best genome for each 2 generations
@@ -164,16 +166,16 @@ def eval_genomes(genomes, config):
             best_genome = genome
         best_scores.append(best_fitness)
     os.chdir(directory)
-    if gen % 1 == 0:
+    if gen % 5 == 0:
         file_name = 'best_net_' + str(gen) + '.pkl'
         file_path = 'solutions\\' + file_name
         net = neat.nn.FeedForwardNetwork.create(best_genome, config)
         with open(file_path, 'wb') as output:
             pickle.dump(net, output, 1)
-    # storing scores
-    with open('best_scores.txt', 'w') as f:
-        for score in best_scores:
-            f.write(str(score) + '\n')
+        # storing scores
+        with open('best_scores.txt', 'w') as f:
+            for score in best_scores:
+                f.write(str(score) + '\n')
 
     # killing the servers
     for p in server_processes:
