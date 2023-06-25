@@ -74,6 +74,17 @@ class AI(RealtimeAI):
         current_agent = copy.deepcopy(new_world.agents[self.my_side]) if is_us else \
             copy.deepcopy(new_world.agents[self.other_side])
 
+        if is_us:
+            if self.my_side == 'Yellow':
+                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.YellowWall
+            elif self.my_side == 'Blue':
+                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.BlueWall
+        else:
+            if self.other_side == 'Yellow':
+                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.YellowWall
+            elif self.other_side == 'Blue':
+                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.BlueWall
+
         # direction change
         if action == "up":
             current_agent.position.y -= 1
@@ -108,16 +119,8 @@ class AI(RealtimeAI):
         # update world with agent
         if is_us:
             new_world.agents[self.my_side] = current_agent
-            if new_world.my_side == 'Yellow':
-                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.YellowWall
-            elif new_world.my_side == 'Blue':
-                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.BlueWall
         else:
             new_world.agents[self.other_side] = current_agent
-            if new_world.other_side == 'Yellow':
-                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.YellowWall
-            elif new_world.other_side == 'Blue':
-                new_world.board[current_agent.position.y][current_agent.position.x] = ECell.BlueWall
 
         return new_world
 
@@ -307,7 +310,8 @@ class AI(RealtimeAI):
 
     def decide(self):
         world = self.world
-        depth = 1
+        depth = 2
+        print("in cycle one : ")
         best_score, best_move = self.min_max_tree(depth, world)
         move = best_move.split("_")
 
@@ -341,7 +345,9 @@ class AI(RealtimeAI):
     def min_max_tree(self, depth, world):
         best_move = None
         best_score = float('-inf')
-        for action in self.get_actions(world, player=self.world.agents[self.my_side]):
+        actions = self.get_actions(world, player=self.world.agents[self.my_side])
+        print("actions : ", actions)
+        for action in actions:
             next_direction = action.split("_")[0]
             activate_state = action.split("_")[1:]
             new_world = copy.deepcopy(world)
