@@ -12,7 +12,7 @@ from chillin_server import GameServer, Config
 from app.game_manager import GameManager
 
 
-config_path = os.path.join(
+config_path = os.path.join( 
     os.path.dirname(os.path.abspath(__file__)),
     "gamecfg.json"
 )

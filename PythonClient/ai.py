@@ -281,7 +281,8 @@ class AI(RealtimeAI):
 
         information = distances + enemies + [world.agents[self.my_side].wall_breaker_cooldown,
                                              world.agents[self.my_side].wall_breaker_rem_time,
-                                             world.agents[self.my_side].health]
+                                             world.agents[self.my_side].health,
+                                             world.scores[self.my_side] - world.scores[self.other_side]]
         print(information)
         onehot_direction = [0] * 4
         onehot_direction[world.agents[self.my_side].direction.value] = 1
@@ -289,14 +290,7 @@ class AI(RealtimeAI):
         return self.nn.activate(information)
 
     def decide(self):
-        # self.i += 1
 
-        # depth = 1
-        # self.min_max_tree(depth, self.world)
-
-        # test
-        best_move = None
-        best_score = float('-inf')
         actions = self.get_actions(self.world, player=self.world.agents[self.my_side])
         scores = [0] * len(actions)
         for i, action in enumerate(actions):
@@ -325,7 +319,6 @@ class AI(RealtimeAI):
 
     # min max tree functions
     def min_max_tree(self, depth, world):
-
         best_move = None
         best_score = float('-inf')
         for action in self.get_actions(world, player=self.my_side):
