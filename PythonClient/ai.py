@@ -304,7 +304,8 @@ class AI(RealtimeAI):
             # activate_state = action.split("_")[1:]
             new_world = copy.deepcopy(self.world)
             new_world = self.game_result(new_world, next_direction, is_us=True)
-            scores[i] = self.heuristic(new_world)
+            # scores[i] = self.heuristic(new_world)
+            scores[i] = self.min_val(3, new_world)
 
         best_move = int(scores.index(max(scores)))
         move = actions[best_move].split("_")
@@ -321,14 +322,11 @@ class AI(RealtimeAI):
         elif move[0] == "down":
             self.send_command(ChangeDirection(EDirection.Down))
 
-
-
     # min max tree functions
     def min_max_tree(self, depth, world):
-
         best_move = None
         best_score = float('-inf')
-        for action in self.get_actions(world, player=self.my_side):
+        for action in self.get_actions(world, player=self.world.agents[self.my_side]):
             next_direction = action.split("_")[0]
             activate_state = action.split("_")[1:]
             new_world = copy.deepcopy(world)
@@ -357,24 +355,52 @@ class AI(RealtimeAI):
             return self.heuristic(world)
         v = float('-inf')
         depth -= 1
-        for action in self.get_actions(world, player=self.my_side):
+        for action in self.get_actions(world, player=self.world.agents[self.my_side]):
             # deep copy from world
             new_world = copy.deepcopy(world)
-            new_world = self.game_result(new_world, action, player=self.other_side)
+            new_world = self.game_result(new_world, action, is_us=False)
             v2 = self.max_val(depth, new_world)
             if v2 > v:
                 v = v2
         return v
+
+
+    # best_move = None
+    # best_score = float('-inf')
+    # actions = self.get_actions(self.world, player=self.world.agents[self.my_side])
+    # scores = [0] * len(actions)
+    # for i, action in enumerate(actions):
+    #     next_direction = action.split("_")[0]
+    #     # activate_state = action.split("_")[1:]
+    #     new_world = copy.deepcopy(self.world)
+    #     new_world = self.game_result(new_world, next_direction, is_us=True)
+    #     # scores[i] = self.heuristic(new_world)
+    #     scores[i] = self.min_val(3, new_world)
+    #
+    # best_move = int(scores.index(max(scores)))
+    # move = actions[best_move].split("_")
+    #
+    # if move[1] == "on":
+    #     self.send_command(ActivateWallBreaker())
+    #
+    # if move[0] == "right":
+    #     self.send_command(ChangeDirection(EDirection.Right))
+    # elif move[0] == "left":
+    #     self.send_command(ChangeDirection(EDirection.Left))
+    # elif move[0] == "up":
+    #     self.send_command(ChangeDirection(EDirection.Up))
+    # elif move[0] == "down":
+    #     self.send_command(ChangeDirection(EDirection.Down))
 
     def max_val(self, depth, world):
         if depth == 0:
             return self.heuristic(world)
         v = float('-inf')
         depth -= 1
-        for action in self.get_actions(world, player=self.my_side):
+        for action in self.get_actions(world, player=self.world.agents[self.my_side]):
             # deep copy from world
             new_world = copy.deepcopy(world)
-            new_world = self.game_result(new_world, action, player=self.my_side)
+            new_world = self.game_result(new_world, action, is_us=True)
             v2 = self.min_val(depth, new_world)
             if v2 > v:
                 v = v2
