@@ -84,14 +84,14 @@ Side: Blue
 3 13
 4 14
 2 14
-3 12
 4 13
-2 13
-3 11
-4 12
-2 12
+5 14
+4 15
+5 13
+6 14
+5 15
 Winner side: Blue
 Details:
   Scores:
-    Blue -> 22
+    Blue -> 24
     Yellow -> -19

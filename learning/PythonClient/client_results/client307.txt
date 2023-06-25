@@ -68,5 +68,5 @@ Side: Yellow
 Winner side: Blue
 Details:
   Scores:
-    Blue -> 26
+    Blue -> 29
     Yellow -> -19

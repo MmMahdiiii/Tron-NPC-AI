@@ -44,8 +44,29 @@ Side: Yellow
 32 1
 32 2
 31 1
-Winner side: Yellow
+33 2
+32 3
+31 2
+33 1
+33 3
+32 1
+32 2
+31 1
+33 2
+32 3
+31 2
+33 1
+33 3
+32 1
+32 2
+31 1
+33 2
+32 3
+31 2
+33 1
+33 3
+Winner side: Blue
 Details:
   Scores:
-    Blue -> -27
-    Yellow -> 19
+    Blue -> 29
+    Yellow -> -19

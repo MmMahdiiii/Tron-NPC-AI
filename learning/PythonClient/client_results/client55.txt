@@ -41,12 +41,8 @@ Side: Blue
 17 2
 19 1
 18 2
-20 1
-19 2
-21 1
-20 2
 Winner side: Blue
 Details:
   Scores:
-    Blue -> 19
-    Yellow -> -29
+    Blue -> 17
+    Yellow -> -28

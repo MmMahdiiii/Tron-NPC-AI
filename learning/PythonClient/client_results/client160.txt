@@ -65,8 +65,12 @@ Side: Blue
 29 2
 31 1
 30 2
+32 1
+31 2
+33 1
+32 2
 Winner side: Blue
 Details:
   Scores:
-    Blue -> 29
-    Yellow -> -19
+    Blue -> 31
+    Yellow -> -14

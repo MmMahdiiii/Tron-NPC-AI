@@ -109,7 +109,7 @@ def run_games(genomes, config):
     for i, p in enumerate(processes):
         # if taking too long, kill the process
         try:
-            p.wait(250)
+            p.wait(400)
         except subprocess.TimeoutExpired:
             pass
         results[i].close()
@@ -132,6 +132,7 @@ def run_games(genomes, config):
                     yellow_score = int(line.split('-> ')[1])
                     if color == 'Yellow':
                         scores[i] += yellow_score
+        
 
     for i, genome in enumerate(gens):
         print('genome ', i, ' score: ', scores[i])
