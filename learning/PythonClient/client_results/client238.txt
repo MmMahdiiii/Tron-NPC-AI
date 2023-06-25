@@ -2,90 +2,16 @@ Loading config from configs\gamecfg238.json
 Loading neural network from nn\nn_238.pkl
 Starting client
 Connecting to host 'localhost' port 8038
-Connected successfully
-joined the game successfully
-Side: Yellow
-33 18
-32 19
-32 18
-31 19
-31 18
-30 19
-31 17
-32 18
-30 18
-30 17
-30 19
-29 18
-30 16
-31 17
-29 17
-29 16
-29 18
-28 17
-29 15
-30 16
-28 16
-28 15
-28 17
-27 16
-28 14
-29 15
-27 15
-27 14
-27 16
-26 15
-27 13
-28 14
-26 14
-28 13
-29 14
-28 15
-29 13
-30 14
-29 15
-30 13
-31 14
-30 15
-31 13
-32 14
-31 15
-32 13
-33 14
-32 15
-33 13
-33 15
-33 16
-32 15
-33 17
-32 16
-33 18
-32 17
-33 19
-32 18
-32 17
-32 19
-31 18
-33 19
-31 19
-33 18
-33 17
-32 18
-32 17
-32 19
-31 18
-33 19
-31 19
-33 18
-33 17
-32 18
-32 17
-32 19
-31 18
-33 19
-31 19
-Winner side: Blue
-Details:
-  Scores:
-    Blue -> 31
-    Yellow -> -17
+Failed to connect: [WinError 10054] An existing connection was forcibly closed by the remote host
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8038
+Failed to connect: attempt to connect already-connected SSLSocket!
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8038
+Failed to connect: attempt to connect already-connected SSLSocket!
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8038
+Failed to connect: attempt to connect already-connected SSLSocket!
+Reconnecting in 1 seconds ...
+Connecting to host 'localhost' port 8038
+Failed to connect: attempt to connect already-connected SSLSocket!

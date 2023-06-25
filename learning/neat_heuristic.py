@@ -13,7 +13,7 @@ import json
 directory = os.getcwd()
 server_directory = directory + '\\PythonServer'
 client_directory = directory + '\\PythonClient'
-num_servers = 200
+num_servers = 500
 
 # TODO : run num_servers servers (pop_size % num_servers == 0)
 # TODO : each neural network would dump to a file
@@ -43,7 +43,6 @@ def generate_servers_config(chosen_map):
         config = json.load(f)
     for i in range(num_servers):
         config['net']['port'] = 8000 + i
-        config['gui']['port'] = 9000 + i
         #        write the config to a new file
         file_name = 'gamecfg' + str(i) + '.json'
         # dump the configs to server_configs folder
@@ -109,7 +108,7 @@ def run_games(genomes, config):
     for i, p in enumerate(processes):
         # if taking too long, kill the process
         try:
-            p.wait(400)
+            p.wait(800)
         except subprocess.TimeoutExpired:
             pass
         results[i].close()

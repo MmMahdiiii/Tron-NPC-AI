@@ -22,7 +22,7 @@
 		"host": "0.0.0.0",
 		"port": 5001,
 		"max_spectators": 3,
-		"save_replay": true,
+		"save_replay": false,
 		"replay_dir": "replays",
 		"replay_filename": null,
 		"cycle_duration": 0.5,

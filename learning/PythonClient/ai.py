@@ -126,7 +126,6 @@ class AI(RealtimeAI):
 
     def get_actions(self, world, player):
         actions = []
-        cur_pos = player.position
         for direction in EDirection:
             if self.is_opposite_direction(direction, player.direction):
                 continue
@@ -309,11 +308,24 @@ class AI(RealtimeAI):
         return self.nn.activate(information)
 
     def decide(self):
-        world = self.world
-        depth = 2
-        print("in cycle one : ")
-        best_score, best_move = self.min_max_tree(depth, world)
-        move = best_move.split("_")
+        # self.i += 1
+
+        # depth = 1
+        # self.min_max_tree(depth, self.world)
+
+        # test
+        best_move = None
+        actions = self.get_actions(self.world, player=self.world.agents[self.my_side])
+        scores = [0] * len(actions)
+        for i, action in enumerate(actions):
+            next_direction = action.split("_")[0]
+            # activate_state = action.split("_")[1:]
+            new_world = copy.deepcopy(self.world)
+            new_world = self.game_result(new_world, next_direction, is_us=True)
+            scores[i] = self.heuristic(new_world)
+
+        best_move = int(scores.index(max(scores)))
+        move = actions[best_move].split("_")
 
         if move[1] == "on":
             self.send_command(ActivateWallBreaker())

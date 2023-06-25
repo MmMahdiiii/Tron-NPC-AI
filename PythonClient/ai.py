@@ -329,7 +329,7 @@ class AI(RealtimeAI):
 
 
 
-    # min max tree functions
+    # min max tree functions  
     def min_max_tree(self, depth, world):
 
         best_move = None
