@@ -140,10 +140,11 @@ def run_games(genomes, config):
 
 best_scores = []
 
-
 gen = 1
-def eval_genomes(genomes, config):
 
+
+def eval_genomes(genomes, config):
+    global gen, best_scores
 
     # select a random map
     chosen_map = random.choice(maps)
@@ -154,7 +155,7 @@ def eval_genomes(genomes, config):
         genome_groups.append(genomes[slide: slide + 2 * num_servers])
     for genome_group in genome_groups:
         server_processes = run_server(chosen_map)
-        time.sleep(7)
+        time.sleep(10)
         run_games(genome_group, config)
 
     # saving the best genome for each 2 generations
@@ -166,23 +167,29 @@ def eval_genomes(genomes, config):
             best_fitness = genome.fitness
             best_genome = genome
         best_scores.append(best_fitness)
+
     os.chdir(directory)
-    if gen % 5 == 0:
-        file_name = 'best_net_' + str(gen) + '.pkl'
-        file_path = 'solutions\\' + file_name
-        net = neat.nn.FeedForwardNetwork.create(best_genome, config)
-        with open(file_path, 'wb') as output:
-            pickle.dump(net, output, 1)
-        # storing scores
-        with open('best_scores.txt', 'w') as f:
-            for score in best_scores:
-                f.write(str(score) + '\n')
+    file_name = 'best_genome_' + str(gen) + '.pkl'
+    file_path = 'solutions\\' + file_name
+    with open(file_path, 'wb') as output:
+        pickle.dump(best_genome, output, 1)
+    nn = neat.nn.FeedForwardNetwork.create(best_genome, config)
+    file_name = 'best_nn_' + str(gen) + '.pkl'
+    file_path = 'solutions\\' + file_name
+    with open(file_path, 'wb') as output:
+        pickle.dump(nn, output, 1)
+    # storing scores
+    with open('best_scores.txt', 'w') as f:
+        for score in best_scores:
+            f.write(str(score) + '\n')
 
     # killing the servers
     for p in server_processes:
         p.kill()
 
     gen += 1
+
+    time.sleep(5)
 
 
 def run(config_file):
@@ -219,3 +226,4 @@ if __name__ == '__main__':
     config_path = os.path.join(local_dir, 'config-feedforward.txt')
     init_maps()
     run(config_path)
+    print(best_scores)
