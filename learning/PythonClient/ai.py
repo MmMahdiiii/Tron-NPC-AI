@@ -213,7 +213,7 @@ class AI(RealtimeAI):
             else:
                 return world.board[X][Y] == ECell.YellowWall
 
-        print(world.agents[self.my_side].position.x, world.agents[self.my_side].position.y)
+        # print(world.agents[self.my_side].position.x, world.agents[self.my_side].position.y)
 
         x, y = world.agents[self.my_side].position.x, world.agents[self.my_side].position.y
 
@@ -288,29 +288,15 @@ class AI(RealtimeAI):
         return self.nn.activate(information)
 
     def decide(self):
-        # self.i += 1
 
-        # depth = 1
-        # self.min_max_tree(depth, self.world)
-
-        # test
-        best_move = None
-        best_score = float('-inf')
-        actions = self.get_actions(self.world, player=self.world.agents[self.my_side])
-        scores = [0] * len(actions)
-        for i, action in enumerate(actions):
-            next_direction = action.split("_")[0]
-            # activate_state = action.split("_")[1:]
-            new_world = copy.deepcopy(self.world)
-            new_world = self.game_result(new_world, next_direction, is_us=True)
-            scores[i] = self.heuristic(new_world)
-
-        best_move = int(scores.index(max(scores)))
-        move = actions[best_move].split("_")
+        world = self.world
+        depth = 8
+        print("in cycle one : ")
+        best_score, best_move = self.min_max_tree(depth, world)
+        move = best_move.split("_")
 
         if move[1] == "on":
             self.send_command(ActivateWallBreaker())
-
         if move[0] == "right":
             self.send_command(ChangeDirection(EDirection.Right))
         elif move[0] == "left":
@@ -327,7 +313,9 @@ class AI(RealtimeAI):
 
         best_move = None
         best_score = float('-inf')
-        for action in self.get_actions(world, player=self.my_side):
+        actions = self.get_actions(world, player=self.world.agents[self.my_side])
+        print("actions : ", actions)
+        for action in actions:
             next_direction = action.split("_")[0]
             activate_state = action.split("_")[1:]
             new_world = copy.deepcopy(world)
@@ -336,50 +324,34 @@ class AI(RealtimeAI):
             if new_score > best_score:
                 best_score = new_score
                 best_move = action
-                world = new_world
-        # change agent direction to best move
-        # todo: activate wall breaker if needed
-
         return best_score, best_move
 
     def min_val(self, depth, world):
-        # if depth == 0:
-        #     return self.heuristic(world)
-        # v = float('inf')
-        # deep copy world
-        # min finding loop operation
-        # modified world
-        # return v
-
+        depth -= 1
         # min is max of other player
         if depth == 0:
             return self.heuristic(world)
         v = float('-inf')
-        depth -= 1
-        for action in self.get_actions(world, player=self.my_side):
+        for action in self.get_actions(world, player=self.world.agents[self.other_side]):
             # deep copy from world
             new_world = copy.deepcopy(world)
-            new_world = self.game_result(new_world, action, player=self.other_side)
+            new_world = self.game_result(new_world, action, is_us=False)
             v2 = self.max_val(depth, new_world)
             if v2 > v:
                 v = v2
         return v
 
     def max_val(self, depth, world):
+        depth -= 1
         if depth == 0:
             return self.heuristic(world)
         v = float('-inf')
-        depth -= 1
-        for action in self.get_actions(world, player=self.my_side):
+        for action in self.get_actions(world, player=self.world.agents[self.my_side]):
             # deep copy from world
             new_world = copy.deepcopy(world)
-            new_world = self.game_result(new_world, action, player=self.my_side)
+            new_world = self.game_result(new_world, action, is_us=True)
             v2 = self.min_val(depth, new_world)
             if v2 > v:
                 v = v2
         return v
-        # bounded depth MinMax Tree Search
-        # calculating heuristics by using the our MagicalBrain
-        # choosing the best move
-        # TODO
 
